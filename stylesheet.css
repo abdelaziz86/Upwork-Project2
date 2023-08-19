@@ -24,6 +24,13 @@ body {
 	padding-left : 20%; 
 }
 
+
+
+
+
+
+
+
 .textFooter {
 	font-size: 20px; 
 	padding-left : 20%; 
@@ -62,7 +69,6 @@ body {
 	font-size: 18px; 
 	margin-top : 60px;
 	width : 80% ; 
-
 }
 
 .text1parag2 {
@@ -118,12 +124,12 @@ a:hover {
 
 
 .subcategories, .categories {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        margin-top: 30px ;
-        justify-content: center;
-    }
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 30px ;
+    justify-content: center;
+}
 
 .subcategory-link, .category-link {
     color: #333;
@@ -149,4 +155,78 @@ hr {
     height: 1px;
     background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0)); 
     margin-top : 0px ;
+}
+
+
+
+
+
+/* CSS animation classes */
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOut {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+}
+
+.animate-slide-in {
+    animation: slideIn 0.5s ease forwards;
+}
+
+.animate-slide-out {
+    animation: slideOut 0.5s ease forwards;
+}
+
+
+
+
+
+
+
+
+
+
+/*============= RESPONSIVENESS ===============*/
+
+@media only screen and (max-width: 768px) {
+	  .divPart1 {
+		width : 85% ; 
+		padding-left : 10%; 
+	}
+
+	.text1Part1 {
+		font-size: 35px ; 
+		margin-top : 40px 
+	}
+
+	.subcategories {
+		margin-left : -20px ; 
+
+		font-size: 12px;
+	}
+
+
+	.divPart2 {
+		margin-left : -30px ; 
+		font-size: 18px; 
+		margin-top : 60px;
+		width : 80% ; 
+	}
+
+
 }
