@@ -25,13 +25,19 @@ body {
 
 .tryNow1 {
 	font-size: 20px; margin-top : 30px; width : 170px ;
-	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+	box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 
 }
 
 .tryNow2{
 	font-size: 20px; margin-top : 20px; width : 190px ; 
-	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+	box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+
+}
+
+.tryNow3{
+	font-size: 16px; margin-top : 30px; width : 120px; 
+	box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 	
 }
 
