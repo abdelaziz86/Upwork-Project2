@@ -1,0 +1,48 @@
+.divPart1 {
+	width : 80% ; 
+	padding-left : 100px
+}
+
+.text1Part1 {
+	font-size: 44px; 
+	margin-top : 150px 
+}
+
+.text2Part1 {
+	font-size: 20px; 
+	margin-top : 60px 
+}
+
+.tryNow1 {
+	font-size: 20px; margin-top : 60px; width : 170px ;
+}
+
+.tryNow2{
+	font-size: 20px; margin-top : 50px; width : 190px ; 
+}
+
+
+.divPart2 {
+	font-size: 18px; 
+	margin-top : 80px;
+	width : 80% ; 
+	
+}
+
+.text1parag2 {
+	font-size: 28px; 
+	margin-top : 20px;
+}
+.text2parag2 {
+	font-size: 15px;
+	 margin-top : 5px ;
+}
+
+.image1 {
+	width : 500px ; 
+	height : 300px; 
+	border : 4px solid white ; 
+	border-radius : 20px ; 
+	margin-top : 20px ; 
+	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
