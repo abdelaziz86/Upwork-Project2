@@ -1,4 +1,6 @@
 $(document).ready(function () {
+     
+
         // Add the .text-animate class to the first product's text initially
         $(".text1parag2:first, .text2parag2:first").addClass("text-animate");
  
@@ -127,7 +129,9 @@ $(document).ready(function () {
     });
 
 
+    
 
+    // =============== loading animations =====================
  
     document.addEventListener("DOMContentLoaded", function() {
         // Trigger animation for elements with "animate-onload" class
@@ -141,7 +145,7 @@ $(document).ready(function () {
 
 
 
-
+    // =============== text part 1 switching ===========================
 
      $(".text1parag2:first, .text2parag2:first").addClass("text-animate");
 

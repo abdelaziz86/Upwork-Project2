@@ -7,9 +7,16 @@ body {
     font-family: 'Roboto', sans-serif;
     width : 100%; 
     height : 100% ;
-    overflow-x: hidden; 
-
+    overflow-x: hidden !important; 
+    overflow-y : hidden !important;
 }
+
+ 
+
+
+
+
+
 
 .animate-onload {
     opacity: 0;
@@ -229,35 +236,90 @@ hr {
 /*============= RESPONSIVENESS ===============*/
 
 @media only screen and (max-width: 768px) {
+	body { 
+    width : 100%; 
+    height : 100% ;
+    overflow-x: hidden !important; 
+    overflow-y : hidden !important;
+}
+    
+/*	=========== part 1 =============*/
+
     .divPart1 {
 		width : 85% ; 
 		padding-left : 10%; 
 	}
 
 	.text1Part1 {
-		font-size: 35px ; 
+		font-size: 25px ; 
 		margin-top : 40px 
 	}
+	.text2Part1 {
+		font-size: 16px ; 
+		margin-top : 10px 
 
+	}
+
+	.tryNow1 {
+		font-size: 14px; 
+		margin-top : 10px; 
+		width : 120px ; 
+
+	}
+
+	.tryNow2{
+		font-size: 14px; 
+		margin-top : 10px; 
+		width : 140px ; 
+	}
+
+
+/*	============ part 2 ============*/ 
+	
+
+	
+
+	.divPart2 {
+		margin-left : -10px ; 
+		font-size: 18px; 
+		margin-top : 0px;
+		width : 80% ; 
+	}
+
+	.categories {
+			font-size: 12px !important; 
+			margin-left : -20px ; 
+
+	} 
 	.subcategories {
 		margin-left : -10px ; 
 
 		font-size: 12px;
 	}
 
-
-	.divPart2 {
-		margin-left : -10px ; 
-		font-size: 18px; 
-		margin-top : 60px;
-		width : 80% ; 
+	.text1parag2 {
+		font-size: 20px;
+		font-weight: 1000px !important;
 	}
 
-	.categories {
-		font-size: 12px !important; 
-		margin-left : -20px ; 
+	.text2parag2 {
+		font-size: 12px;
 
-	} 
+	}
+
+	.tryNow3 {
+		font-size: 14px ;
+	}
+
+	.image1 {
+		width: 200px;
+		height : auto ; 
+	}
+
+	.textFooter {
+		display : none ;
+	}
+	
 }
 
 
@@ -330,6 +392,11 @@ hr {
 .subcategories-container::-webkit-scrollbar {
     display: none; /* Chrome, Safari, Opera */
 }
+
+
+
+
+
 
 
 
