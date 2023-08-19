@@ -133,6 +133,9 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     $(document).ready(function () {
+        // Add the .text-animate class to the first product's text initially
+        $(".text1parag2:first, .text2parag2:first").addClass("text-animate");
+
         $(".sidebar-link").click(function (e) {
             e.preventDefault();
 
