@@ -18,9 +18,9 @@ $(document).ready(function () {
                 microsoft365: "https://www.tunisianet.com.tn/317692-home/pc-portable-asus-vivobook-16-i9-11900h-rtx-3050-4-g-16-go.jpg"
             };
             var subcategoryDescriptions = {
-                outlook: "See your mail while you browse",
-                onenote: "Capture your thoughts and ideas",
-                microsoft365: "Enhance your productivity"
+                outlook: "See your mail while you browse desc",
+                onenote: "Capture your thoughts and ideas desc",
+                microsoft365: "Enhance your productivity desc"
             }
 
             $("#image").fadeOut("slow", function () {
@@ -81,6 +81,22 @@ $(document).ready(function () {
          // CATEGORY 1 
         $(".category-link[data-category='sidebar']").click(function (e) {
             e.preventDefault();
+
+
+            // changing to first product of cateogry 1
+            $("#image").fadeOut("slow", function () {
+                $(this).attr("src", "https://www.tunisianet.com.tn/306796-home/pc-portable-asus-vivobook-16-i5-11300h-12-go-win11-silver.jpg").fadeIn("slow");
+            });
+
+            $(".text1parag2, .text2parag2").removeClass("text-animate");
+
+            setTimeout(function () {
+                $(".text1parag2").text("See your mail while you browse").addClass("text-animate");
+                $(".text2parag2").text("See your mail while you browse desc").addClass("text-animate");
+            }, 500);
+
+
+            // === animation
             $(".subcategories2").hide();
             $(".subcategories1").fadeIn();
         });
@@ -88,6 +104,21 @@ $(document).ready(function () {
         // CATEGORY 2
         $(".category-link[data-category='create']").click(function (e) {
             e.preventDefault();
+
+            // changing to first product of cateogry 1
+            $("#image").fadeOut("slow", function () {
+                $(this).attr("src", "https://mk-media.mytek.tn/media/catalog/product/cache/4635b69058c0dccf0c8109f6ac6742cc/i/p/iphone-se-2022-64-go-midnight-apple.jpg").fadeIn("slow");
+            });
+
+            $(".text1parag2, .text2parag2").removeClass("text-animate");
+
+            setTimeout(function () {
+                $(".text1parag2").text("Product 1  subcategory 2").addClass("text-animate");
+                $(".text2parag2").text("Product 1  subcategory 2 description").addClass("text-animate");
+            }, 500);
+
+
+            // === animation
             $(".subcategories1").hide();
             $(".subcategories2").fadeIn();
         });
