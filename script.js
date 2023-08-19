@@ -198,4 +198,20 @@ $(document).ready(function () {
     });
 
 
+
+
+
+    $(".subcategories2").hide();
+
+    $(".left-arrow").click(function () {
+        $(".subcategories-container").animate({
+            scrollLeft: "-=100"
+        }, "fast");
+    });
+
+    $(".right-arrow").click(function () {
+        $(".subcategories-container").animate({
+            scrollLeft: "+=100"
+        }, "fast");
+    });
 }); 
