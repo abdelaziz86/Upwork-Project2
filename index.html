@@ -18,16 +18,7 @@
  
     <style>
     /* Add animation CSS */
-    .animate-onload {
-        opacity: 0;
-        transform: translateY(20px);
-        transition: opacity 0.5s, transform 0.5s;
-    }
     
-    .animate-onload.animate-visible {
-        opacity: 1;
-        transform: translateY(0);
-    }
 </style>
 
 </head>
@@ -90,22 +81,35 @@
         <button type="button" class="btn btn-outline-primary tryNow3 animate-onload"  >Try Now</button>
 
         <br>
-        <img id="image" class="image1 animate-onload" src="https://www.tunisianet.com.tn/306796-home/pc-portable-asus-vivobook-16-i5-11300h-12-go-win11-silver.jpg">    
+        <video controls class="image1 animate-onload">
+            <source    src="https://edgestatic.azureedge.net/shared/cms/lrs1c69a1j/section-videos/df336a987e474303b01736e979677a56.mp4" type="video/mp4" />
+        </video>
+        <!-- <img id="image" class="image1 animate-onload" src="https://www.tunisianet.com.tn/306796-home/pc-portable-asus-vivobook-16-i5-11300h-12-go-win11-silver.jpg">     -->
         <br>
 
-        <!-- ======== CATEGORIES ======== -->
-        <hr style="margin-top : 50px ;">
+        
+    </div>
+    </center>
+  </div>  
+</div>
 
-        <div class="categories" style="margin-top : -10px ;  margin-bottom : 80px">
+
+
+<div class="row footer" >
+    <div class="col-md-5 " >
+        <div class="textFooter">
+        Welcome to Microsoft Edge
+        </div>
+    </div>
+
+    <div class="col-md-7"> 
+        <!-- ======== CATEGORIES ======== --> 
+
+        <div class="categories" style="margin-top : -10px ;  margin-bottom : 80px ;margin-top : 50px ;">
             <a class="category-link" href="#" data-category="sidebar">First Category</a>
             <a class="category-link" href="#" data-category="create">Second Category</a> 
         </div>
     </div>
-    </center>
-  </div> 
-
-
-
 </div>
 
 
