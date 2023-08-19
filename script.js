@@ -59,6 +59,15 @@ $(document).ready(function () {
 
  
 
+
+
+
+
+
+
+
+
+
          // CATEGORY 1 
         $(".category-link[data-category='sidebar']").click(function (e) {
             e.preventDefault();
@@ -116,3 +125,14 @@ $(document).ready(function () {
 
 
     });
+
+
+
+ 
+    document.addEventListener("DOMContentLoaded", function() {
+        // Trigger animation for elements with "animate-onload" class
+        const animateElements = document.querySelectorAll(".animate-onload");
+        animateElements.forEach(element => {
+            element.classList.add("animate-visible");
+        });
+    }); 

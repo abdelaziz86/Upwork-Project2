@@ -16,9 +16,20 @@
 
 	<link rel="stylesheet" href="stylesheet.css"> 
  
-    <style type="text/css">
-        
-    </style>
+    <style>
+    /* Add animation CSS */
+    .animate-onload {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.5s, transform 0.5s;
+    }
+    
+    .animate-onload.animate-visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+</style>
+
 </head>
 <body style="margin: 0px; padding : 0px">
 
@@ -26,26 +37,26 @@
 
   <!-- =============== PART ON THE LEFT ================ -->
 
-  <div class="col-5">
+  <div class="col-md-5">
       <div class="divPart1">
 
-        <div class="text1Part1">
+        <div class="text1Part1 animate-onload">
             Free Microsoft 365 apps are easier to use in Edge
         </div>
 
-        <div class="text2Part1">
+        <div class="text2Part1 animate-onload">
             Your web apps are just a click away. Get more done with built-in Microsft 465 features on Microsoft Edge.
         </div>
 
-        <button type="button" class="btn btn-primary tryNow1"  >Try Now</button>
+        <button type="button" class="btn btn-primary tryNow1 animate-onload">Try Now</button>
         <br>
-        <button type="button" class="btn btn-outline-primary tryNow2"  >Next</button>
+        <button type="button" class="btn btn-outline-primary tryNow2 animate-onload">Next</button>
     </div>
   </div>
 
 
 <!-- ================= PART ON THE RIGHT ================== -->
-  <div class="col-7"> 
+  <div class="col-md-7"> 
     <center>
     <div class="divPart2"> 
         <!-- ===== SUB CATEGORIES 1 ==== -->
@@ -53,8 +64,9 @@
             <a class="subcategory-link" href="#" data-subcategory="outlook">Outlook</a>
             <a class="subcategory-link" href="#" data-subcategory="onenote">OneNote</a>
             <a class="subcategory-link" href="#" data-subcategory="microsoft365">Microsoft 365</a>
+            <br>
         </div>
-
+        
 
         <!-- ===== SUB CATEGORIES 2==== -->
 
@@ -64,6 +76,7 @@
             <a class="subcategory-link" href="#" data-subcategory="computer">Computer</a>
         </div>
 
+        <hr>
 
 
         <!-- ======== PRODUCT ========== -->
@@ -74,14 +87,16 @@
             You can read your mail while you browse the web all in the same tab with Microsoft Outlook integration in sidebar. Only in microsoft edge.
         </div>
 
-        <button type="button" class="btn btn-outline-primary tryNow3"  >Try Now</button>
+        <button type="button" class="btn btn-outline-primary tryNow3 animate-onload"  >Try Now</button>
 
         <br>
-        <img id="image" class="image1" src="https://www.tunisianet.com.tn/306796-home/pc-portable-asus-vivobook-16-i5-11300h-12-go-win11-silver.jpg">    
+        <img id="image" class="image1 animate-onload" src="https://www.tunisianet.com.tn/306796-home/pc-portable-asus-vivobook-16-i5-11300h-12-go-win11-silver.jpg">    
         <br>
 
         <!-- ======== CATEGORIES ======== -->
-        <div class="categories" style="margin-top : 50px ; margin-bottom : 80px">
+        <hr style="margin-top : 50px ;">
+
+        <div class="categories" style="margin-top : -10px ;  margin-bottom : 80px">
             <a class="category-link" href="#" data-category="sidebar">First Category</a>
             <a class="category-link" href="#" data-category="create">Second Category</a> 
         </div>

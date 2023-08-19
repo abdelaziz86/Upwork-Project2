@@ -1,5 +1,5 @@
 body {
-    background: linear-gradient(to bottom, #F3FFF2, #D9FFA1);
+    background: linear-gradient(to bottom, #C9CBFD, #D9FFA1);
     background-size: cover; 
     margin: 0;
     padding: 0;
@@ -10,12 +10,12 @@ body {
 
 .divPart1 {
 	width : 95% ; 
-	padding-left : 100px
+	padding-left : 20%; 
 }
 
 .text1Part1 {
 	font-size: 44px; 
-	margin-top : 150px 
+	margin-top : 130px 
 }
 
 .text2Part1 {
@@ -44,7 +44,7 @@ body {
 
 .divPart2 {
 	font-size: 18px; 
-	margin-top : 80px;
+	margin-top : 60px;
 	width : 80% ; 
 
 }
@@ -59,7 +59,7 @@ body {
 }
 
 .image1 {
-	width : 500px ; 
+	width : 80% ; 
 	height : 300px; 
 	border : 4px solid white ; 
 	border-radius : 20px ; 
@@ -77,6 +77,10 @@ body {
     opacity: 1;
     transform: translateY(0);
 }
+
+
+
+
 
 
  
@@ -101,7 +105,7 @@ a:hover {
         display: flex;
         align-items: center;
         gap: 10px;
-        margin-top: 30px !important;
+        margin-top: 30px ;
         justify-content: center;
     }
 
@@ -119,7 +123,14 @@ a:hover {
     transform: translateY(-50%);
     height: 100%;
     width: 1px;
-    background-color: #ccc;
+    background-color: black ;
 }
 
 
+
+hr {
+	border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0)); 
+    margin-top : 0px ;
+}
