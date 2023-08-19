@@ -46,3 +46,14 @@
 	margin-top : 20px ; 
 	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
+
+.text1parag2, .text2parag2 {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.text-animate {
+    opacity: 1;
+    transform: translateY(0);
+}
