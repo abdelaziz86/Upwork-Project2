@@ -15,6 +15,26 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 
 	<link rel="stylesheet" href="stylesheet.css"> 
+
+    <style>
+        /* Your existing styles here */
+
+        /* Media queries and additional styles for responsiveness */
+        /* ... */
+
+        /* Animation for text changes */
+        .text1parag2, .text2parag2 {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .text-animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+
 </head>
 <body style="margin: 0px; padding : 0px">
 
@@ -22,7 +42,7 @@
 
   <!-- =============== PART ON THE LEFT ================ -->
 
-  <div class="col-6">
+  <div class="col-5">
       <div class="divPart1">
 
         <div class="text1Part1">
@@ -41,7 +61,7 @@
 
 
 <!-- ================= PART ON THE RIGHT ================== -->
-  <div class="col-6"> 
+  <div class="col-7"> 
     <center>
     <div class="divPart2">
         <div style="margin-top: 50px">
@@ -85,7 +105,7 @@
  
 
 
- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!--  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     $(document).ready(function () {
         $(".sidebar-link").click(function (e) {
@@ -107,8 +127,47 @@
             });
         });
     });
-</script>
+</script> -->
 
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $(".sidebar-link").click(function (e) {
+            e.preventDefault();
+
+            var linkId = $(this).attr("id");
+
+            var imageSrc;
+            var text1, text2;
+
+            if (linkId === "outlookLink") {
+                imageSrc = "https://www.tunisianet.com.tn/306796-home/pc-portable-asus-vivobook-16-i5-11300h-12-go-win11-silver.jpg";
+                text1 = "See your mail while you browse";
+                text2 = "Access your mail while browsing the web all in the same tab with Microsoft Outlook integration in the sidebar. Only in Microsoft Edge.";
+            } else if (linkId === "onenoteLink") {
+                imageSrc = "https://www.tunisianet.com.tn/292946-home/portable-hp-probook-450-g9-i5-12e-gen-8-go.jpg";
+                text1 = "Capture your thoughts and ideas";
+                text2 = "Keep your notes organized and accessible with OneNote integration in the sidebar. Only in Microsoft Edge.";
+            } else if (linkId === "microsoft365Link") {
+                imageSrc = "https://www.tunisianet.com.tn/317692-home/pc-portable-asus-vivobook-16-i9-11900h-rtx-3050-4-g-16-go.jpg";
+                text1 = "Enhance your productivity";
+                text2 = "Access Microsoft 365 apps seamlessly and boost your productivity with built-in features on Microsoft Edge.";
+            }
+
+            $("#image").fadeOut("slow", function () {
+                $(this).attr("src", imageSrc).fadeIn("slow");
+            });
+
+            $(".text1parag2, .text2parag2").removeClass("text-animate");
+
+            setTimeout(function () {
+                $(".text1parag2").text(text1).addClass("text-animate");
+                $(".text2parag2").text(text2).addClass("text-animate");
+            }, 500); // Wait for the image to fade in before animating text
+        });
+    });
+</script>
 
 </body>
 </html>

@@ -1,5 +1,5 @@
 .divPart1 {
-	width : 80% ; 
+	width : 90% ; 
 	padding-left : 100px
 }
 
@@ -10,15 +10,15 @@
 
 .text2Part1 {
 	font-size: 20px; 
-	margin-top : 60px 
+	margin-top : 40px 
 }
 
 .tryNow1 {
-	font-size: 20px; margin-top : 60px; width : 170px ;
+	font-size: 20px; margin-top : 30px; width : 170px ;
 }
 
 .tryNow2{
-	font-size: 20px; margin-top : 50px; width : 190px ; 
+	font-size: 20px; margin-top : 20px; width : 190px ; 
 }
 
 
@@ -26,7 +26,7 @@
 	font-size: 18px; 
 	margin-top : 80px;
 	width : 80% ; 
-	
+
 }
 
 .text1parag2 {
