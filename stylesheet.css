@@ -1,11 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');	
 body {
 /*    background: linear-gradient(to bottom, #C9CBFD, #D9FFA1);*/
     background-size: cover; 
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
+    font-family: 'Roboto', sans-serif;
     width : 100%; 
     height : 100% ;
+    overflow-x: hidden;
 }
 
 .animate-onload {
@@ -19,9 +21,23 @@ body {
     transform: translateY(0);
 }
 
+
+
+
+
+/*======= PART 1 =============*/
 .divPart1 {
 	width : 95% ; 
 	padding-left : 20%; 
+	max-width: 100%;
+}
+
+
+.gradientText { 
+	background: linear-gradient(45deg, #f3ec78, #af4261);
+    -webkit-background-clip: text; /* Apply gradient to the text */
+    background-clip: text;
+    color: transparent;
 }
 
 
@@ -29,12 +45,10 @@ body {
 
 
 
-
-
 .textFooter {
-	font-size: 20px; 
+	font-size: 18px; 
 	padding-left : 20%; 
-	margin-top : 60px ;
+	margin-top : 50px ;
 }
 .text1Part1 {
 	font-size: 44px; 
@@ -58,17 +72,26 @@ body {
 
 }
 
+
+
+
+
+
+
+/*========== PART 2 ================*/
+
 .tryNow3{
 	font-size: 16px; margin-top : 30px; width : 120px; 
 	box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 	
 }
 
-
 .divPart2 {
-	font-size: 14px; 
+	font-size: 13px; 
 	margin-top : 10px;
-	width : 80% ; 
+	width : 80% ;
+	max-width: 100%;
+
 }
 
 .text1parag2 {
@@ -105,22 +128,31 @@ body {
 
 
 
- 
-    
+/*============ UNDERLINE =================*/
+
 .subcategory-link.active, .category-link.active {
-    text-decoration: underline;
+    text-decoration: none;
+    color :  #3586FF ;
+    border-bottom: 2px solid  #3586FF ;  /* Adjust this value to control the padding */
 }
 
 a {
-	color : black ; 
-	font-weight : 600px ; 
-	margin : 10px ; 
+    color: black;
+    font-weight: 600; 
     text-decoration: none;
+    border-bottom: 2px solid transparent;
+    padding-bottom: 3px; /* Adjust this value to control the padding for non-active links */
+    padding-right: 20px;
 }
 
 a:hover { 
-    text-decoration: underline !important;
+    text-decoration: none !important;
+    color : #3586FF ; 
+    border-bottom: 2px solid  #3586FF ;  /* Adjust this value to control the padding for hovered links */
 }
+
+
+/*============== END UNDERLINE =================*/
 
 
 .subcategories, .categories {
@@ -129,6 +161,7 @@ a:hover {
     gap: 0px;
     margin-top: 30px ;
     justify-content: center;
+    font-size: 13px;
 }
 
 .subcategory-link, .category-link {
@@ -309,3 +342,9 @@ hr {
 
 
 
+
+
+
+
+
+ 
