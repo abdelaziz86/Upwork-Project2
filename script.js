@@ -36,6 +36,15 @@ $(document).ready(function () {
                 computer: "Product 3  subcategory 2 description"
             }
 
+
+
+            $(".subcategory-link").removeClass("active"); // Remove active class from all subcategory links
+        $(this).addClass("active"); // Add active class to the clicked subcategory link
+
+
+
+
+
             $("#image").fadeOut("slow", function () {
                 $(this).attr("src", subcategoryImage[subcategory]).fadeIn("slow");
             });
