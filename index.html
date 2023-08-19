@@ -51,12 +51,22 @@
     <center>
     <div class="divPart2">
 
-        <!-- ===== SUB CATEGORIES ==== -->
+        <!-- ===== SUB CATEGORIES 1 ==== -->
         <div style="margin-top: 50px">
             <a class="subcategory-link" href="#" data-subcategory="outlook">Outlook</a>
             <a class="subcategory-link" href="#" data-subcategory="onenote">OneNote</a>
             <a class="subcategory-link" href="#" data-subcategory="microsoft365">Microsoft 365</a>
         </div>
+
+
+        <!-- ===== SUB CATEGORIES 2==== -->
+
+        <div style="margin-top: 50px ; display : none"  >
+            <a class="subcategory-link1" href="#" data-subcategory="outlook">Electronics</a>
+            <a class="subcategory-link1" href="#" data-subcategory="onenote">Mobile</a>
+            <a class="subcategory-link1" href="#" data-subcategory="microsoft365">Computer</a>
+        </div>
+
 
 
         <!-- ======== PRODUCT ========== -->
@@ -70,18 +80,13 @@
         <button type="button" class="btn btn-outline-primary" style="font-size: 16px; margin-top : 30px; width : 120px ">Try Now</button>
 
         <br>
-        <img id="image" class="image1" src="https://www.tunisianet.com.tn/306796-home/pc-portable-asus-vivobook-16-i5-11300h-12-go-win11-silver.jpg">
-
-
-
+        <img id="image" class="image1" src="https://www.tunisianet.com.tn/306796-home/pc-portable-asus-vivobook-16-i5-11300h-12-go-win11-silver.jpg">    
         <br>
 
         <!-- ======== CATEGORIES ======== -->
         <div style="margin-top : 50px">
-            <a class="category-link" href="#" data-category="sidebar">SideBar</a>
-            <a class="category-link" href="#" data-category="create">Create</a>
-            <a class="category-link" href="#" data-category="features">Built-in features</a>
-            <a class="category-link" href="#" data-category="apps">Free productivity apps</a>
+            <a class="category-link" href="#" data-category="sidebar">First Category</a>
+            <a class="category-link" href="#" data-category="create">Second Category</a> 
         </div>
     </div>
     </center>
@@ -97,85 +102,7 @@
     $(document).ready(function () {
         // Add the .text-animate class to the first product's text initially
         $(".text1parag2:first, .text2parag2:first").addClass("text-animate");
-
-        $(".sidebar-link").click(function (e) {
-            e.preventDefault();
-
-            var linkId = $(this).attr("id");
-
-            var imageSrc;
-            var text1, text2;
-
-            if (linkId === "outlookLink") {
-                imageSrc = "https://www.tunisianet.com.tn/306796-home/pc-portable-asus-vivobook-16-i5-11300h-12-go-win11-silver.jpg";
-                text1 = "See your mail while you browse";
-                text2 = "Access your mail while browsing the web all in the same tab with Microsoft Outlook integration in the sidebar. Only in Microsoft Edge.";
-            } else if (linkId === "onenoteLink") {
-                imageSrc = "https://www.tunisianet.com.tn/292946-home/portable-hp-probook-450-g9-i5-12e-gen-8-go.jpg";
-                text1 = "Capture your thoughts and ideas";
-                text2 = "Keep your notes organized and accessible with OneNote integration in the sidebar. Only in Microsoft Edge.";
-            } else if (linkId === "microsoft365Link") {
-                imageSrc = "https://www.tunisianet.com.tn/317692-home/pc-portable-asus-vivobook-16-i9-11900h-rtx-3050-4-g-16-go.jpg";
-                text1 = "Enhance your productivity";
-                text2 = "Access Microsoft 365 apps seamlessly and boost your productivity with built-in features on Microsoft Edge.";
-            }
-
-            $("#image").fadeOut("slow", function () {
-                $(this).attr("src", imageSrc).fadeIn("slow");
-            });
-
-            $(".text1parag2, .text2parag2").removeClass("text-animate");
-
-            setTimeout(function () {
-                $(".text1parag2").text(text1).addClass("text-animate");
-                $(".text2parag2").text(text2).addClass("text-animate");
-            }, 500);  
-        });
-
-
-        $(".category-link").click(function (e) {
-            e.preventDefault();
-
-            var category = $(this).data("category");
-            var subcategoryTexts = {
-                sidebar: "SideBar",
-                create: "Create",
-                features: "Built-in features",
-                apps: "Free productivity apps"
-            };
-
-            // Update subcategories
-            $(".sidebar-link").each(function () {
-                $(this).text(subcategoryTexts[category]);
-            });
-
-            // Update product text and image
-            var productTexts = {
-                sidebar: "See your mail while you browse",
-                create: "Unlock your creativity",
-                features: "Enhance your productivity",
-                apps: "Boost your efficiency with free apps"
-            };
-            var productImage = {
-                sidebar: "https://www.tunisianet.com.tn/306796-home/pc-portable-asus-vivobook-16-i5-11300h-12-go-win11-silver.jpg",
-                create: "https://www.example.com/create-image.jpg",
-                features: "https://www.example.com/features-image.jpg",
-                apps: "https://www.example.com/apps-image.jpg"
-            };
-
-            $("#image").fadeOut("slow", function () {
-                $(this).attr("src", productImage[category]).fadeIn("slow");
-            });
-
-            $(".text1parag2, .text2parag2").removeClass("text-animate");
-
-            setTimeout(function () {
-                $(".text1parag2").text(productTexts[category]).addClass("text-animate");
-                $(".text2parag2").text("New description for " + category).addClass("text-animate");
-            }, 500);
-        });
-
-
+ 
 
         $(".subcategory-link").click(function (e) {
             e.preventDefault();
@@ -207,6 +134,23 @@
                 $(".text1parag2").text(subcategoryTexts[subcategory]).addClass("text-animate");
                 $(".text2parag2").text(subcategoryDescriptions[subcategory]).addClass("text-animate");
             }, 500);
+        });
+
+
+
+
+         // Show the subcategories when clicking on the First Category
+        $(".category-link[data-category='sidebar']").click(function (e) {
+            e.preventDefault();
+            $(".subcategory-link").show();
+            $(".subcategory-link1").hide();
+        });
+
+        // Show the SUB CATEGORIES 2 when clicking on the Second Category
+        $(".category-link[data-category='create']").click(function (e) {
+            e.preventDefault();
+            $(".subcategory-link1").show();
+            $(".subcategory-link").hide();
         });
 
     });
