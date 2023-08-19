@@ -39,7 +39,7 @@ $(document).ready(function () {
 
 
             $(".subcategory-link").removeClass("active"); // Remove active class from all subcategory links
-        $(this).addClass("active"); // Add active class to the clicked subcategory link
+            $(this).addClass("active"); // Add active class to the clicked subcategory link
 
 
 
@@ -63,6 +63,8 @@ $(document).ready(function () {
         $(".category-link[data-category='sidebar']").click(function (e) {
             e.preventDefault();
 
+            $(".category-link").removeClass("active"); // Remove active class from all subcategory links
+            $(this).addClass("active"); // Add active class to the clicked subcategory link
 
             // changing to first product of cateogry 1
             $("#image").fadeOut("slow", function () {
@@ -85,6 +87,12 @@ $(document).ready(function () {
         // CATEGORY 2
         $(".category-link[data-category='create']").click(function (e) {
             e.preventDefault();
+
+            $(".category-link").removeClass("active"); // Remove active class from all subcategory links
+            $(this).addClass("active"); // Add active class to the clicked subcategory link
+
+
+
 
             // changing to first product of cateogry 1
             $("#image").fadeOut("slow", function () {
