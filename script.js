@@ -199,7 +199,7 @@ $(document).ready(function () {
 
 
 
-
+    // ===================== ARROWS =======================
 
     $(".subcategories2").hide();
 
@@ -214,6 +214,13 @@ $(document).ready(function () {
             scrollLeft: "+=100"
         }, "fast");
     });
+
+
+
+
+
+
+
 }); 
 
 

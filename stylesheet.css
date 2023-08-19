@@ -7,7 +7,8 @@ body {
     font-family: 'Roboto', sans-serif;
     width : 100%; 
     height : 100% ;
-    overflow-x: hidden;
+    overflow-x: hidden; 
+
 }
 
 .animate-onload {
@@ -32,19 +33,7 @@ body {
 	max-width: 100%;
 }
 
-
-.gradientText { 
-	background: linear-gradient(45deg, #f3ec78, #af4261);
-    -webkit-background-clip: text; /* Apply gradient to the text */
-    background-clip: text;
-    color: transparent;
-}
-
-
-
-
-
-
+ 
 .textFooter {
 	font-size: 18px; 
 	padding-left : 20%; 
@@ -81,14 +70,17 @@ body {
 /*========== PART 2 ================*/
 
 .tryNow3{
-	font-size: 16px; margin-top : 30px; width : 120px; 
+	font-size: 16px; 
+	margin-top : 10px; 
+	width : 120px;
+	margin-bottom: 10px; 
 	box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 	
 }
 
 .divPart2 {
 	font-size: 13px; 
-	margin-top : 10px;
+	margin-top : 20px;
 	width : 80% ;
 	max-width: 100%;
 
