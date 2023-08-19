@@ -228,5 +228,11 @@ hr {
 		width : 80% ; 
 	}
 
+	.categories {
+		font-size: 12px !important; 
+		margin-left : -20px ; 
+
+	}
+
 
 }
