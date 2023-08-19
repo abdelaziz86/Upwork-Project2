@@ -12,7 +12,7 @@ body {
     opacity: 0;
     transform: translateY(20px);
     transition: opacity 0.5s, transform 0.5s;
-}
+}	
 
 .animate-onload.animate-visible {
     opacity: 1;
@@ -66,7 +66,7 @@ body {
 
 
 .divPart2 {
-	font-size: 18px; 
+	font-size: 14px; 
 	margin-top : 60px;
 	width : 80% ; 
 }
@@ -204,7 +204,7 @@ hr {
 /*============= RESPONSIVENESS ===============*/
 
 @media only screen and (max-width: 768px) {
-	  .divPart1 {
+    .divPart1 {
 		width : 85% ; 
 		padding-left : 10%; 
 	}
@@ -215,14 +215,14 @@ hr {
 	}
 
 	.subcategories {
-		margin-left : -20px ; 
+		margin-left : -10px ; 
 
 		font-size: 12px;
 	}
 
 
 	.divPart2 {
-		margin-left : -30px ; 
+		margin-left : -10px ; 
 		font-size: 18px; 
 		margin-top : 60px;
 		width : 80% ; 
@@ -232,7 +232,5 @@ hr {
 		font-size: 12px !important; 
 		margin-left : -20px ; 
 
-	}
-
-
+	} 
 }
