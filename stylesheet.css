@@ -297,6 +297,10 @@ hr {
 		font-size: 12px;
 	}
 
+	.subcategories2 {
+		margin-top  : 20px ; 
+	}
+
 	.text1parag2 {
 		font-size: 16px; 
 	}
@@ -434,37 +438,60 @@ hr {
         flex-direction: column;
         align-items: flex-end;
         position: relative;
+        font-size : 13px !important ; 
     }
 
     .footer-right .categories select {
         margin-top: 5px;
     }
+
+    .footer {
+    	height : 90px ; 
+    	padding-right : 10%; 
+    	padding-top : 20px ;
+
+    }
 }
 
 
+
+
 .dropdown {
-            position: relative;
-            display: inline-block;
-            cursor: pointer;
-        }
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
 
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            bottom: 100%; /* Position above the trigger */
-            left: 0;
-            background-color: #f9f9f9;
-            min-width: 160px;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-            z-index: 1;
-        }
+.dropdown-content {
+    display: none;
+    position: absolute;
+    bottom: 100%; /* Position above the trigger */
+    left: 0;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    color : red !important ; 
+    padding : 10px ; 
+    border-radius: 10px; 
+}
 
-        .dropdown:hover .dropdown-content {
-            display: block;
-        }
+.dropdown-content:hover {
+	color : red !important ; 
+}
+.dropdown:hover .dropdown-content {
+    display: block;
+}
 
 
 
+
+
+@media (max-width: 768px) {
+  body {
+    overflow: hidden; /* Prevent scrolling */
+  }
+}
 
 
  

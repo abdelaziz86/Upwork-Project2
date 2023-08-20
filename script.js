@@ -291,57 +291,39 @@ $(document).ready(function () {
 
 
 
-         // ============================ CATEGORY 1 
+
+
+         // ============================ CLICKING CATEGORY 1 ================== 
         $(".category-link[data-category='sidebar']").click(function (e) {
             e.preventDefault();
-
-            $(".category-link").removeClass("active"); // Remove active class from all subcategory links
-            $(this).addClass("active"); // Add active class to the clicked subcategory link
-
-            // changing to first product of cateogry 1
-            $("#image").fadeOut("slow", function () {
-                $(this).attr("src", "https://www.tunisianet.com.tn/306796-home/pc-portable-asus-vivobook-16-i5-11300h-12-go-win11-silver.jpg").fadeIn("slow");
-            });
-
-            $(".text1parag2, .text2parag2").removeClass("text-animate");
-
-            setTimeout(function () {
-                $(".text1parag2").text("See your mail while you browse").addClass("text-animate");
-                $(".text2parag2").text("See your mail while you browse desc").addClass("text-animate");
-            }, 500);
+            categoryOne(".category-link[data-category='sidebar']" , ".subcategories2" , ".subcategories1") ; 
+                swappingProducts(
+                    ".firstSub1",
+                    "https://www.tunisianet.com.tn/306796-home/pc-portable-asus-vivobook-16-i5-11300h-12-go-win11-silver.jpg",
+                    "See your mail while you browse",
+                    "See your mail while you browse desc");
 
 
-            // === animation
-            $(".subcategories2").hide();
-            $(".subcategories1").fadeIn();
+                var category = "sidebar" ; 
+                currentIndex = 0 ;
+            
         });
 
-        // CATEGORY 2
+
+
+        //  ======================== CLICKING CATEGORY 2 ==============================
         $(".category-link[data-category='create']").click(function (e) {
             e.preventDefault();
 
-            $(".category-link").removeClass("active"); // Remove active class from all subcategory links
-            $(this).addClass("active"); // Add active class to the clicked subcategory link
+            categoryOne(".category-link[data-category='create']" , ".subcategories1" , ".subcategories2") ; 
+            swappingProducts(
+                ".firstSub2",
+                "https://mk-media.mytek.tn/media/catalog/product/cache/4635b69058c0dccf0c8109f6ac6742cc/i/p/iphone-se-2022-64-go-midnight-apple.jpg",
+                "Product 1  subcategory 2",
+                "Product 1  subcategory 2 description");
 
-
-
-
-            // changing to first product of cateogry 1
-            $("#image").fadeOut("slow", function () {
-                $(this).attr("src", "https://mk-media.mytek.tn/media/catalog/product/cache/4635b69058c0dccf0c8109f6ac6742cc/i/p/iphone-se-2022-64-go-midnight-apple.jpg").fadeIn("slow");
-            });
-
-            $(".text1parag2, .text2parag2").removeClass("text-animate");
-
-            setTimeout(function () {
-                $(".text1parag2").text("Product 1  subcategory 2").addClass("text-animate");
-                $(".text2parag2").text("Product 1  subcategory 2 description").addClass("text-animate");
-            }, 500);
-
-
-            // === animation
-            $(".subcategories1").hide();
-            $(".subcategories2").fadeIn();
+            category = "create" ; 
+            currentIndex = 3 ;
         });
 
 
@@ -365,62 +347,7 @@ $(document).ready(function () {
      
 
 
-
-    // =============== text part 1 switching ===========================
-
-     $(".text1parag2:first, .text2parag2:first").addClass("text-animate");
-
-    // Define initial content for the divPart1 section
-    var initialText1 = "Free Microsoft 365 apps are easier to use in Edge";
-    var initialText2 = "Your web apps are just a click away. Get more done with built-in Microsft 465 features on Microsoft Edge.";
-
-    // Initialize the content of divPart1 with the initial text
-    $(".text1Part1").text(initialText1);
-    $(".text2Part1").text(initialText2);
-
-    $(".category-link").click(function (e) {
-        e.preventDefault();
-
-        var category = $(this).data("category");
-        var categoryTexts = {
-            sidebar: {
-                text1: "Free Microsoft 365 apps are easier to use in Edge",
-                text2: "Your web apps are just a click away. Get more done with built-in Microsft 465 features on Microsoft Edge."
-            },
-            create: {
-                text1: "Category 2",
-                text2: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s."
-            }
-        };
-
-        var newText1 = categoryTexts[category].text1;
-        var newText2 = categoryTexts[category].text2;
-
-        // Add animation classes and update the content of divPart1 based on the selected category
-        $(".text1Part1").addClass("animate-slide-out").one("animationend", function () {
-            $(this).removeClass("animate-slide-out");
-            $(this).text(newText1);
-            $(this).addClass("animate-slide-in");
-        });
-
-        $(".text2Part1").addClass("animate-slide-out").one("animationend", function () {
-            $(this).removeClass("animate-slide-out");
-            $(this).text(newText2);
-            $(this).addClass("animate-slide-in");
-        });
-
-        $(".text1Part1, .text2Part1, .tryNow1, .tryNow2").addClass("animate-slide-out").one("animationend", function () {
-            $(this).removeClass("animate-slide-out");
-            $(this).addClass("animate-slide-in");
-        });
-
-        $(".text1Part1").text(newText1);
-        $(".text2Part1").text(newText2);
-        $(".tryNow1").text("Try Now");
-        $(".tryNow2").text("Next");
-
-        // ... rest of your code ...
-    });
+ 
 
 
 
@@ -450,7 +377,7 @@ $(document).ready(function () {
         if ($(window).width() <= 768) {
             $(".footer-right .categories").html(`
                 <div class="dropdown">
-                    <span>Open Dropdown <i class="fas fa-caret-down"></i></span>
+                    <span>Sub Categories <i class="fa fa-caret-down" aria-hidden="true"></i></span>
                     <div class="dropdown-content">
                         <a class="category-link" href="" data-category="sidebar">First Category</a>
                         <br>
@@ -459,17 +386,7 @@ $(document).ready(function () {
                     </div>
                 </div>
             `);
-        } 
-        // else {
-        //     $(".footer-right .categories").html(`
-        //         <div class="footer-right col-md-7">
-        //             <div class="categories">
-        //                 <a class="category-link" href="" data-category="sidebar">First Category</a>
-        //                 <a class="category-link" href="" data-category="create">Second Category</a>
-        //             </div>
-        //         </div>
-        //     `);=   
-        // }
+        }  
     });
 
      
