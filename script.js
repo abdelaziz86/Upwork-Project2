@@ -1,100 +1,49 @@
 $(document).ready(function () {
-    
-// ================= SCROLLING BETWEEN CATEGORIES =================================
-        var isScrollingEnabled = true;
-        var category = "" ; 
-        $(window).on("mousewheel DOMMouseScroll", function (e) {
-            if (!isScrollingEnabled) {
-                return;
-            }
-            
+    var currentIndex = 0;
+    var currentCategory = 1 ; 
 
-            var delta = e.originalEvent.wheelDelta || -e.originalEvent.detail;
-
-            // Check for horizontal scrolling
-            if (Math.abs(e.originalEvent.deltaX) > Math.abs(e.originalEvent.deltaY)) {
-                return;
-            }
-            isScrollingEnabled = false;
-
-            if (delta > 0) {
-                console.log("Scrolling up");
-                // Put your code for scrolling up here
-                $(".category-link").removeClass("active"); // Remove active class from all subcategory links
-                $(".category-link[data-category='create']").addClass("active"); // Add active class to the clicked subcategory link
+    var categoryTexts = {
+        sidebar: {
+            text1: "Free Microsoft 365 apps are easier to use in Edge",
+            text2: "Your web apps are just a click away. Get more done with built-in Microsft 465 features on Microsoft Edge."
+        },
+        create: {
+            text1: "Category 2",
+            text2: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s."
+        }
+    };
 
 
+    function swappingProducts(image , title, desc ) {
+        // changing to first product of cateogry 1
+        $("#imageFirst").fadeOut("slow", function () {
+            $(this).attr("src", image).fadeIn("slow");
+        });
+
+        $(".text1parag2, .text2parag2").removeClass("text-animate");
+
+        setTimeout(function () {
+            $(".text1parag2").text(title).addClass("text-animate");
+            $(".text2parag2").text(desc).addClass("text-animate");
+        }, 500);
+    }
 
 
-                // changing to first product of cateogry 1
-                $("#imageFirst").fadeOut("slow", function () {
-                    $(this).attr("src", "https://mk-media.mytek.tn/media/catalog/product/cache/4635b69058c0dccf0c8109f6ac6742cc/i/p/iphone-se-2022-64-go-midnight-apple.jpg").fadeIn("slow");
-                });
+    function categoryOne(dataCategory, hide, fadeIn) {
+        $(".category-link").removeClass("active"); // Remove active class from all subcategory links
+        $(dataCategory).addClass("active"); // Add active class to the clicked subcategory link
 
-                $(".text1parag2, .text2parag2").removeClass("text-animate");
-
-                setTimeout(function () {
-                    $(".text1parag2").text("Product 1  subcategory 2").addClass("text-animate");
-                    $(".text2parag2").text("Product 1  subcategory 2 description").addClass("text-animate");
-                }, 500);
+        // === animation
+        $(hide).hide();
+        $(fadeIn).fadeIn();
+    }
 
 
-                // === animation
-                $(".subcategories1").hide();
-                $(".subcategories2").fadeIn();
+    function swappingPartOne(text1, text2) {
+        var newText1 = text1;
+        var newText2 = text2;
 
-                category = "create" ; 
-
-
-
-            } else {
-                console.log("Scrolling down");
-                // Put your code for scrolling down here
-
-                $(".category-link").removeClass("active"); // Remove active class from all subcategory links
-                $(".category-link[data-category='sidebar']").addClass("active"); // Add active class to the clicked subcategory link
-
-                // changing to first product of cateogry 1
-                $("#imageFirst").fadeOut("slow", function () {
-                    $(this).attr("src", "https://www.tunisianet.com.tn/306796-home/pc-portable-asus-vivobook-16-i5-11300h-12-go-win11-silver.jpg").fadeIn("slow");
-                });
-
-                $(".text1parag2, .text2parag2").removeClass("text-animate");
-
-                setTimeout(function () {
-                    $(".text1parag2").text("See your mail while you browse").addClass("text-animate");
-                    $(".text2parag2").text("See your mail while you browse desc").addClass("text-animate");
-                }, 500);
-
-
-                // === animation
-                $(".subcategories2").hide();
-                $(".subcategories1").fadeIn();
-
-                var category = "sidebar" ; 
-
-            }
-
-
-
-
-            // ======= part 1 text ====================
-
-            var categoryTexts = {
-                sidebar: {
-                    text1: "Free Microsoft 365 apps are easier to use in Edge",
-                    text2: "Your web apps are just a click away. Get more done with built-in Microsft 465 features on Microsoft Edge."
-                },
-                create: {
-                    text1: "Category 2",
-                    text2: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s."
-                }
-            };
-
-            var newText1 = categoryTexts[category].text1;
-            var newText2 = categoryTexts[category].text2;
-
-            // Add animation classes and update the content of divPart1 based on the selected category
+        // Add animation classes and update the content of divPart1 based on the selected category
             $(".text1Part1").addClass("animate-slide-out").one("animationend", function () {
                 $(this).removeClass("animate-slide-out");
                 $(this).text(newText1);
@@ -116,16 +65,60 @@ $(document).ready(function () {
             $(".text2Part1").text(newText2);
             $(".tryNow1").text("Try Now");
             $(".tryNow2").text("Next");
+    }
 
 
 
 
 
 
+    
+// ================= SCROLLING BETWEEN CATEGORIES =================================
+        var isScrollingEnabled = true;
+        var category = "" ; 
+        $(window).on("mousewheel DOMMouseScroll", function (e) {
+            if (!isScrollingEnabled) {
+                return;
+            }
+            
+
+            var delta = e.originalEvent.wheelDelta || -e.originalEvent.detail;
+
+            // Check for horizontal scrolling
+            if (Math.abs(e.originalEvent.deltaX) > Math.abs(e.originalEvent.deltaY)) {
+                return;
+            }
+            isScrollingEnabled = false;
+
+            if (delta > 0) {
+                console.log("Scrolling up");
+                // Put your code for scrolling up here
+                categoryOne(".category-link[data-category='create']" , ".subcategories1" , ".subcategories2") ; 
+                swappingProducts("https://mk-media.mytek.tn/media/catalog/product/cache/4635b69058c0dccf0c8109f6ac6742cc/i/p/iphone-se-2022-64-go-midnight-apple.jpg",
+                    "Product 1  subcategory 2",
+                    "Product 1  subcategory 2 description");
+
+                category = "create" ; 
 
 
 
+            } else {
+                console.log("Scrolling down");
+                // Put your code for scrolling down here
 
+                categoryOne(".category-link[data-category='sidebar']" , ".subcategories2" , ".subcategories1") ; 
+                swappingProducts("https://www.tunisianet.com.tn/306796-home/pc-portable-asus-vivobook-16-i5-11300h-12-go-win11-silver.jpg",
+                    "See your mail while you browse",
+                    "See your mail while you browse desc");
+
+
+                var category = "sidebar" ; 
+
+            }
+
+
+            // ======= part 1 text ====================
+            swappingPartOne(categoryTexts[category].text1,categoryTexts[category].text2) ;
 
 
             e.preventDefault();
@@ -188,29 +181,24 @@ $(document).ready(function () {
 
 
 
+            
+
             $(".subcategory-link").removeClass("active"); // Remove active class from all subcategory links
             $(this).addClass("active"); // Add active class to the clicked subcategory link
 
+            swappingProducts( subcategoryImage[subcategory] , 
+                subcategoryTexts[subcategory], 
+                subcategoryDescriptions[subcategory] ) ; 
+
+             
 
 
 
-
-            $("#imageFirst").fadeOut("slow", function () {
-                $(this).attr("src", subcategoryImage[subcategory]).fadeIn("slow");
-            });
-
-            $(".text1parag2, .text2parag2").removeClass("text-animate");
-
-            setTimeout(function () {
-                $(".text1parag2").text(subcategoryTexts[subcategory]).addClass("text-animate");
-                $(".text2parag2").text(subcategoryDescriptions[subcategory]).addClass("text-animate");
-            }, 500);
         });
 
  
     // ===================== SWITCHING SUBACTEGORIES AUTOMATICALLY ==================================
         var subcategories = ["outlook", "onenote", "microsoft365", "electronics", "mobile", "computer"];
-        var currentIndex = 0;
         var timeoutId;
 
 
@@ -465,4 +453,3 @@ $(document).on("click", function () {
 }); 
 
 
- 
