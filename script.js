@@ -14,7 +14,12 @@ $(document).ready(function () {
     };
 
 
-    function swappingProducts(image , title, desc ) {
+    function swappingProducts(subcategoryClass, image , title, desc ) {
+
+        $(".subcategory-link").removeClass("active"); // Remove active class from all subcategory links
+            $(subcategoryClass).addClass("active"); // Add active class to the clicked subcategory link
+
+
         // changing to first product of cateogry 1
         $("#imageFirst").fadeOut("slow", function () {
             $(this).attr("src", image).fadeIn("slow");
@@ -94,12 +99,14 @@ $(document).ready(function () {
                 console.log("Scrolling up");
                 // Put your code for scrolling up here
                 categoryOne(".category-link[data-category='create']" , ".subcategories1" , ".subcategories2") ; 
-                swappingProducts("https://mk-media.mytek.tn/media/catalog/product/cache/4635b69058c0dccf0c8109f6ac6742cc/i/p/iphone-se-2022-64-go-midnight-apple.jpg",
+                swappingProducts(
+                    ".firstSub2",
+                    "https://mk-media.mytek.tn/media/catalog/product/cache/4635b69058c0dccf0c8109f6ac6742cc/i/p/iphone-se-2022-64-go-midnight-apple.jpg",
                     "Product 1  subcategory 2",
                     "Product 1  subcategory 2 description");
 
                 category = "create" ; 
-
+                currentIndex = 3 ; 
 
 
             } else {
@@ -107,12 +114,15 @@ $(document).ready(function () {
                 // Put your code for scrolling down here
 
                 categoryOne(".category-link[data-category='sidebar']" , ".subcategories2" , ".subcategories1") ; 
-                swappingProducts("https://www.tunisianet.com.tn/306796-home/pc-portable-asus-vivobook-16-i5-11300h-12-go-win11-silver.jpg",
+                swappingProducts(
+                    ".firstSub1",
+                    "https://www.tunisianet.com.tn/306796-home/pc-portable-asus-vivobook-16-i5-11300h-12-go-win11-silver.jpg",
                     "See your mail while you browse",
                     "See your mail while you browse desc");
 
 
                 var category = "sidebar" ; 
+                currentIndex = 0 ; 
 
             }
 
@@ -178,21 +188,14 @@ $(document).ready(function () {
                 mobile: "Product 2  subcategory 2 description",
                 computer: "Product 3  subcategory 2 description"
             }
+ 
 
-
-
-            
-
-            $(".subcategory-link").removeClass("active"); // Remove active class from all subcategory links
-            $(this).addClass("active"); // Add active class to the clicked subcategory link
-
-            swappingProducts( subcategoryImage[subcategory] , 
+            swappingProducts(this,
+                subcategoryImage[subcategory] , 
                 subcategoryTexts[subcategory], 
                 subcategoryDescriptions[subcategory] ) ; 
 
-             
-
-
+              
 
         });
 
@@ -233,41 +236,48 @@ $(document).ready(function () {
                 computer: "Product 3  subcategory 2 description"
             }
 
-            $(".subcategory-link").removeClass("active");
-            $(".subcategory-link[data-subcategory='" + subcategory + "']").addClass("active");
 
-            $("#imageFirst").fadeOut("slow", function () {
-                $(this).attr("src", subcategoryImage[subcategory]).fadeIn("slow");
-            });
-
-            $(".text1parag2, .text2parag2").removeClass("text-animate");
-
-            setTimeout(function () {
-                $(".text1parag2").text(subcategoryTexts[subcategory]).addClass("text-animate");
-                $(".text2parag2").text(subcategoryDescriptions[subcategory]).addClass("text-animate");
-            }, 500);
+            swappingProducts(
+                ".subcategory-link[data-subcategory='" + subcategory + "']",
+                subcategoryImage[subcategory],
+                subcategoryTexts[subcategory],
+                subcategoryDescriptions[subcategory]
+                ) ; 
         }
 
         
         function autoChangeSubcategory() {
-    currentIndex = (currentIndex + 1) % subcategories.length;
-    changeSubcategory(subcategories[currentIndex]);
+            currentIndex = (currentIndex + 1) % subcategories.length;
+            console.log("loool : " + currentIndex) ; 
+            if (currentIndex == 3) {
+                changeSubcategory(subcategories[0]);
+                currentIndex = 0 ; 
+            } else if (currentIndex == 0) {
+                changeSubcategory(subcategories[3]);
+                currentIndex = 3 ; 
 
-    // Set the timeout for the next auto change
-    timeoutId = setTimeout(autoChangeSubcategory, 3000);
-}
+            } else {
+                changeSubcategory(subcategories[currentIndex]);
+            }
 
-// Initial subcategory change
-changeSubcategory(subcategories[currentIndex]);
+            // Set the timeout for the next auto change
+            timeoutId = setTimeout(autoChangeSubcategory, 5000);
+        }
 
-// Start the initial timeout
-timeoutId = setTimeout(autoChangeSubcategory, 3000);
 
-// Event listener for any clicks on the screen
-$(document).on("click", function () {
-    clearTimeout(timeoutId); // Reset the timeout
-    timeoutId = setTimeout(autoChangeSubcategory, 3000);
-});
+
+
+        // Initial subcategory change
+        changeSubcategory(subcategories[currentIndex]);
+
+        // Start the initial timeout
+        timeoutId = setTimeout(autoChangeSubcategory, 5000);
+
+        // Event listener for any clicks on the screen
+        $(document).on("click Scrolling", function () {
+            clearTimeout(timeoutId); // Reset the timeout
+            timeoutId = setTimeout(autoChangeSubcategory, 3000);
+        });
 
 
 
