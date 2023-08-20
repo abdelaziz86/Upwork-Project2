@@ -1,6 +1,6 @@
 $(document).ready(function () {
     
-
+// ================= SCROLLING BETWEEN CATEGORIES =================================
         var isScrollingEnabled = true;
 
         $(window).on("mousewheel DOMMouseScroll", function (e) {
@@ -8,9 +8,14 @@ $(document).ready(function () {
                 return;
             }
             
-            isScrollingEnabled = false;
 
             var delta = e.originalEvent.wheelDelta || -e.originalEvent.detail;
+
+            // Check for horizontal scrolling
+            if (Math.abs(e.originalEvent.deltaX) > Math.abs(e.originalEvent.deltaY)) {
+                return;
+            }
+            isScrollingEnabled = false;
 
             if (delta > 0) {
                 console.log("Scrolling up");
@@ -74,113 +79,9 @@ $(document).ready(function () {
 
 
     
+// ================= END SCROLLING BETWEEN CATEGORIES =================================
 
          
-
-
-
-        // var isScrollingDown = false;
-        // var isScrollingUp = false;
-
-        // $(window).on("mousewheel DOMMouseScroll", function (e) {
-
-        //     // Normalize the delta value for different browsers
-        //     var delta = e.originalEvent.wheelDelta || -e.originalEvent.detail;
-
-        //     if (delta < 0) {
-        //         // Scrolling up
-        //         if (!isScrollingDown) {
-        //             isScrollingUp = true;
-        //             console.log("Scrolling up");
-        //             // Put your code for scrolling up here
-        //             $(".category-link").removeClass("active"); // Remove active class from all subcategory links
-        //             $(".category-link[data-category='sidebar']").addClass("active"); // Add active class to the clicked subcategory link
-
-        //             // changing to first product of cateogry 1
-        //             $("#imageFirst").fadeOut("slow", function () {
-        //                 $(this).attr("src", "https://www.tunisianet.com.tn/306796-home/pc-portable-asus-vivobook-16-i5-11300h-12-go-win11-silver.jpg").fadeIn("slow");
-        //             });
-
-        //             $(".text1parag2, .text2parag2").removeClass("text-animate");
-
-        //             setTimeout(function () {
-        //                 $(".text1parag2").text("See your mail while you browse").addClass("text-animate");
-        //                 $(".text2parag2").text("See your mail while you browse desc").addClass("text-animate");
-        //             }, 500);
-
-
-        //             // === animation
-        //             $(".subcategories2").hide();
-        //             $(".subcategories1").fadeIn();
-
-
-        //              setTimeout(function () {
-        //                 isScrollingUp = false;
-        //             }, 2000); 
-
-        //         }
-        //     } else {
-        //         // Scrolling down
-        //         if (!isScrollingUp) {
-        //             isScrollingDown = true;
-        //             console.log("Scrolling down");
-        //             // Put your code for scrolling down here
-
-        //             $(".category-link").removeClass("active"); // Remove active class from all subcategory links
-        //             $(".category-link[data-category='create']").addClass("active"); // Add active class to the clicked subcategory link
-
-
-
-
-        //             // changing to first product of cateogry 1
-        //             $("#imageFirst").fadeOut("slow", function () {
-        //                 $(this).attr("src", "https://mk-media.mytek.tn/media/catalog/product/cache/4635b69058c0dccf0c8109f6ac6742cc/i/p/iphone-se-2022-64-go-midnight-apple.jpg").fadeIn("slow");
-        //             });
-
-        //             $(".text1parag2, .text2parag2").removeClass("text-animate");
-
-        //             setTimeout(function () {
-        //                 $(".text1parag2").text("Product 1  subcategory 2").addClass("text-animate");
-        //                 $(".text2parag2").text("Product 1  subcategory 2 description").addClass("text-animate");
-        //             }, 500);
-
-
-        //             // === animation
-        //             $(".subcategories1").hide();
-        //             $(".subcategories2").fadeIn();
-
-        //             setTimeout(function () {
-        //                 isScrollingDown = false;
-        //             }, 2000); // Reset the flag after 2 seconds
-        //         }
-        //     }
-
-        //     // Prevent the default scrolling behavior if necessary
-        //     if (isScrollingUp || isScrollingDown) {
-        //         e.preventDefault();
-        //         isScrollingUp = false;
-        //         isScrollingDown = false;
-        //     }
-
-            
-        // });
-
-     
-         
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -405,6 +306,20 @@ $(document).ready(function () {
 
 
 
+
+
+
+
+    $(document).ready(function () {
+        if ($(window).width() <= 768) {
+            $(".footer-right .categories").html(`
+                <select id="category-select">
+                    <option value="sidebar">First Category</option>
+                    <option value="create">Second Category</option>
+                </select>
+            `);
+        }
+    });
 
 
 
