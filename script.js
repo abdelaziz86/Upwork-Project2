@@ -2,7 +2,7 @@ $(document).ready(function () {
     
 // ================= SCROLLING BETWEEN CATEGORIES =================================
         var isScrollingEnabled = true;
-
+        var category = "" ; 
         $(window).on("mousewheel DOMMouseScroll", function (e) {
             if (!isScrollingEnabled) {
                 return;
@@ -43,6 +43,8 @@ $(document).ready(function () {
                 $(".subcategories1").hide();
                 $(".subcategories2").fadeIn();
 
+                category = "create" ; 
+
 
 
             } else {
@@ -68,7 +70,63 @@ $(document).ready(function () {
                 // === animation
                 $(".subcategories2").hide();
                 $(".subcategories1").fadeIn();
+
+                var category = "sidebar" ; 
+
             }
+
+
+
+
+            // ======= part 1 text ====================
+
+            var categoryTexts = {
+                sidebar: {
+                    text1: "Free Microsoft 365 apps are easier to use in Edge",
+                    text2: "Your web apps are just a click away. Get more done with built-in Microsft 465 features on Microsoft Edge."
+                },
+                create: {
+                    text1: "Category 2",
+                    text2: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s."
+                }
+            };
+
+            var newText1 = categoryTexts[category].text1;
+            var newText2 = categoryTexts[category].text2;
+
+            // Add animation classes and update the content of divPart1 based on the selected category
+            $(".text1Part1").addClass("animate-slide-out").one("animationend", function () {
+                $(this).removeClass("animate-slide-out");
+                $(this).text(newText1);
+                $(this).addClass("animate-slide-in");
+            });
+
+            $(".text2Part1").addClass("animate-slide-out").one("animationend", function () {
+                $(this).removeClass("animate-slide-out");
+                $(this).text(newText2);
+                $(this).addClass("animate-slide-in");
+            });
+
+            $(".text1Part1, .text2Part1, .tryNow1, .tryNow2").addClass("animate-slide-out").one("animationend", function () {
+                $(this).removeClass("animate-slide-out");
+                $(this).addClass("animate-slide-in");
+            });
+
+            $(".text1Part1").text(newText1);
+            $(".text2Part1").text(newText2);
+            $(".tryNow1").text("Try Now");
+            $(".tryNow2").text("Next");
+
+
+
+
+
+
+
+
+
+
+
 
             e.preventDefault();
 
@@ -84,6 +142,11 @@ $(document).ready(function () {
          
 
 
+
+
+
+
+    //=============== CLICKING SUBCATEGORY ======================
 
 
         // Add the .text-animate class to the first product's text initially
@@ -132,7 +195,7 @@ $(document).ready(function () {
 
 
 
-            $("#image").fadeOut("slow", function () {
+            $("#imageFirst").fadeOut("slow", function () {
                 $(this).attr("src", subcategoryImage[subcategory]).fadeIn("slow");
             });
 
@@ -145,6 +208,78 @@ $(document).ready(function () {
         });
 
  
+    // ===================== SWITCHING SUBACTEGORIES AUTOMATICALLY ==================================
+        var subcategories = ["outlook", "onenote", "microsoft365", "electronics", "mobile", "computer"];
+        var currentIndex = 0;
+        var timeoutId;
+
+
+
+        function changeSubcategory(subcategory) {
+            var subcategoryTexts = {
+                outlook: "See your mail while you browse",
+                onenote: "Capture your thoughts and ideas",
+                microsoft365: "Enhance your productivity",
+
+
+                electronics: "Product 1  subcategory 2",
+                mobile: "Product 2  subcategory 2",
+                computer: "Product 3  subcategory 2"
+            };
+            var subcategoryImage = {
+                outlook: "https://www.tunisianet.com.tn/306796-home/pc-portable-asus-vivobook-16-i5-11300h-12-go-win11-silver.jpg",
+                onenote: "https://www.tunisianet.com.tn/292946-home/portable-hp-probook-450-g9-i5-12e-gen-8-go.jpg",
+                microsoft365: "https://www.tunisianet.com.tn/317692-home/pc-portable-asus-vivobook-16-i9-11900h-rtx-3050-4-g-16-go.jpg",
+
+                electronics: "https://mk-media.mytek.tn/media/catalog/product/cache/4635b69058c0dccf0c8109f6ac6742cc/i/p/iphone-se-2022-64-go-midnight-apple.jpg",
+                mobile: "https://mk-media.mytek.tn/media/catalog/product/cache/4635b69058c0dccf0c8109f6ac6742cc/i/p/iphone_11_64_go_vert_-_apple.jpg",
+                computer: "https://mk-media.mytek.tn/media/catalog/product/cache/4635b69058c0dccf0c8109f6ac6742cc/i/p/iph-11-64-black_3.jpg"
+            };
+            var subcategoryDescriptions = {
+                outlook: "See your mail while you browse desc",
+                onenote: "Capture your thoughts and ideas desc",
+                microsoft365: "Enhance your productivity desc",
+
+                electronics: "Product 1  subcategory 2 description",
+                mobile: "Product 2  subcategory 2 description",
+                computer: "Product 3  subcategory 2 description"
+            }
+
+            $(".subcategory-link").removeClass("active");
+            $(".subcategory-link[data-subcategory='" + subcategory + "']").addClass("active");
+
+            $("#imageFirst").fadeOut("slow", function () {
+                $(this).attr("src", subcategoryImage[subcategory]).fadeIn("slow");
+            });
+
+            $(".text1parag2, .text2parag2").removeClass("text-animate");
+
+            setTimeout(function () {
+                $(".text1parag2").text(subcategoryTexts[subcategory]).addClass("text-animate");
+                $(".text2parag2").text(subcategoryDescriptions[subcategory]).addClass("text-animate");
+            }, 500);
+        }
+
+        
+        function autoChangeSubcategory() {
+    currentIndex = (currentIndex + 1) % subcategories.length;
+    changeSubcategory(subcategories[currentIndex]);
+
+    // Set the timeout for the next auto change
+    timeoutId = setTimeout(autoChangeSubcategory, 3000);
+}
+
+// Initial subcategory change
+changeSubcategory(subcategories[currentIndex]);
+
+// Start the initial timeout
+timeoutId = setTimeout(autoChangeSubcategory, 3000);
+
+// Event listener for any clicks on the screen
+$(document).on("click", function () {
+    clearTimeout(timeoutId); // Reset the timeout
+    timeoutId = setTimeout(autoChangeSubcategory, 3000);
+});
 
 
 
@@ -155,7 +290,10 @@ $(document).ready(function () {
 
 
 
-         // CATEGORY 1 
+
+
+
+         // ============================ CATEGORY 1 
         $(".category-link[data-category='sidebar']").click(function (e) {
             e.preventDefault();
 
