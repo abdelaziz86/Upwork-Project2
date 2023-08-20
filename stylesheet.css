@@ -251,24 +251,24 @@ hr {
 	}
 
 	.text1Part1 {
-		font-size: 25px ; 
-		margin-top : 40px 
+		font-size: 18px ; 
+		margin-top : 20px 
 	}
 	.text2Part1 {
-		font-size: 16px ; 
-		margin-top : 10px 
+		font-size: 12px ; 
+		margin-top : 5px 
 
 	}
 
 	.tryNow1 {
-		font-size: 14px; 
+		font-size: 10px; 
 		margin-top : 10px; 
 		width : 120px ; 
 
 	}
 
 	.tryNow2{
-		font-size: 14px; 
+		font-size: 10px; 
 		margin-top : 10px; 
 		width : 140px ; 
 	}
@@ -287,32 +287,31 @@ hr {
 	}
 
 	.categories {
-			font-size: 12px !important; 
-			margin-left : -20px ; 
-
+		font-size: 12px !important; 
+		margin-left : -20px ;
+		margin-top : -10px ; 
 	} 
+
 	.subcategories {
 		margin-left : -10px ; 
-
 		font-size: 12px;
 	}
 
 	.text1parag2 {
-		font-size: 20px;
-		font-weight: 1000px !important;
+		font-size: 16px; 
 	}
 
 	.text2parag2 {
-		font-size: 12px;
+		font-size: 9px;
 
 	}
 
 	.tryNow3 {
-		font-size: 14px ;
+		font-size: 10px ;
 	}
 
 	.image1 {
-		width: 200px;
+		width: 160px;
 		height : auto ; 
 	}
 
