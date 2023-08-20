@@ -153,7 +153,7 @@ a:hover {
 
 /*============== END UNDERLINE =================*/
 
-
+@media only screen and (min-width: 768px) {
 .subcategories, .categories {
     display: flex;
     align-items: center;
@@ -179,7 +179,7 @@ a:hover {
     width: 0.5px;
     background-color: black ;
 }
-
+}
 
 
 hr {

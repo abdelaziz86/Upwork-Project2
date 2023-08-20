@@ -449,13 +449,30 @@ $(document).ready(function () {
     $(document).ready(function () {
         if ($(window).width() <= 768) {
             $(".footer-right .categories").html(`
-                <select id="category-select">
-                    <option value="sidebar">First Category</option>
-                    <option value="create">Second Category</option>
-                </select>
+                <div class="dropdown">
+                    <span>Open Dropdown <i class="fas fa-caret-down"></i></span>
+                    <div class="dropdown-content">
+                        <a class="category-link" href="" data-category="sidebar">First Category</a>
+                        <br>
+                        <a class="category-link" href="" data-category="create">Second Category</a>
+                        <br> 
+                    </div>
+                </div>
             `);
-        }
+        } 
+        // else {
+        //     $(".footer-right .categories").html(`
+        //         <div class="footer-right col-md-7">
+        //             <div class="categories">
+        //                 <a class="category-link" href="" data-category="sidebar">First Category</a>
+        //                 <a class="category-link" href="" data-category="create">Second Category</a>
+        //             </div>
+        //         </div>
+        //     `);=   
+        // }
     });
+
+     
 
 
 
