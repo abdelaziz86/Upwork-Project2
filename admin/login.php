@@ -1,6 +1,6 @@
 <?php
 session_start() ; 
-var logged = 0 ; 
+$logged = 0 ; 
 if (isset($_POST['login'])) {
     $username = $_POST['username'];
     $password = $_POST['password'];
@@ -14,13 +14,13 @@ if (isset($_POST['login'])) {
     $user = $query->fetch(PDO::FETCH_ASSOC);
     
     if ($user) {
-       logged = 2; 
+       $logged = 2; 
        $_SESSION['user'] = $user ; 
-       echo $_SESSION['user'] ; 
+       //echo $_SESSION['user'] ; 
 
     } else {
-    	logged = 1 ; 
-        echo "Invalid username or password.";
+    	$logged = 1 ; 
+        
     }
 }
 ?>
@@ -53,6 +53,14 @@ if (isset($_POST['login'])) {
                 <label for="password">Password</label>
                 <input type="password" class="form-control" id="password" name="password" placeholder="Password">
               </div>
+              <?php
+                if ($logged==1) {
+                  echo "
+                    <p style='color : red ; '>Invalid credentials. </p>
+                  " ; 
+                }
+              ?>
+              
               <button type="submit" class="btn btn-primary" name="login">Login</button>
             </form>
           </div>
