@@ -1,4 +1,5 @@
 $(document).ready(function () {
+  console.log("hii"); 
   // Show the modal when the "Add Category" button is clicked
   $("#addCategoryModal").on("show.bs.modal", function () {
     // Clear any existing form data

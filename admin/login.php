@@ -6,7 +6,7 @@ if (isset($_POST['login'])) {
     $password = $_POST['password'];
 
     // Replace with your database connection details
-    $db = new PDO('mysql:host=localhost;dbname=vipin', 'root', '');
+    require_once 'connect.php' ; 
 
     $query = $db->prepare("SELECT * FROM user WHERE username = :username AND password = :password");
     $query->execute(array(':username' => $username, ':password' => $password));
@@ -17,7 +17,7 @@ if (isset($_POST['login'])) {
        $logged = 2; 
        $_SESSION['user'] = $user ; 
        //echo $_SESSION['user'] ; 
-
+      header("Location : index.php") ; 
     } else {
     	$logged = 1 ; 
         
