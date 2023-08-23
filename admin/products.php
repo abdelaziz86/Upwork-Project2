@@ -35,11 +35,10 @@ if (!$_SESSION['user']) {
 
   <table class="table mt-3">
     <thead>
-      <tr>
-        <th>ID</th>
+      <tr> 
+        <th>Image</th>
         <th>Name</th>
         <th>Description</th>
-        <th>Image</th>
         <th>Action</th>
       </tr>
     </thead>
