@@ -63,22 +63,26 @@ $(document).ready(function () {
             category.description +
             "</td>" +
             "<td>" +
-            '<button class="btn btn-info edit-button" data-id="' +
-            category.id +
-            '">Edit</button>' +
+            '<button class="btn btn-info edit-button" data-toggle="modal" data-target="#editCategoryModal" data-id="' +
+  category.id +
+  '">Edit</button>'+
             '<button class="btn btn-danger delete-button" data-id="' +
             category.id +
             '">Delete</button>' +
             "</td>" +
-            "</tr>";
+            "</tr>";  
           $("#categoryTableBody").append(row);
         });
 
         $(".edit-button").click(function () {
           var categoryId = $(this).data("id");
+          console.log("ID : " + categoryId); 
           var selectedCategory = categories.find(function (category) {
-            return category.id === categoryId;
+            console.log("NOW : " + category); 
+            return category.id == categoryId;
           });
+
+          console.log("selected : "+selectedCategory);
           if (selectedCategory) {
             populateEditForm(selectedCategory);
             $("#editCategoryModal").modal("show");

@@ -77,6 +77,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <button type="submit" class="btn btn-primary" name="addCategory">Add Category</button>
         </form>
     </div>
+ 
+    </div>
+  </div>
+</div>
 
 
 
@@ -85,7 +89,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
 
-    <!-- Modal for editing a category -->
+
+
+<!-- Modal for editing a category -->
 <div class="modal fade" id="editCategoryModal" tabindex="-1" aria-labelledby="editCategoryModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -113,13 +119,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           <button type="submit" class="btn btn-primary" name="updateCategory">Update Category</button>
         </form>
       </div>
-    </div>
-  </div>
-</div>
-
-
-
-
     </div>
   </div>
 </div>
