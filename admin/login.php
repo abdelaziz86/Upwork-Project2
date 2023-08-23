@@ -17,7 +17,7 @@ if (isset($_POST['login'])) {
        $logged = 2; 
        $_SESSION['user'] = $user ; 
        //echo $_SESSION['user'] ; 
-      header("Location : index.php") ; 
+      header("Location: index.php") ; 
     } else {
     	$logged = 1 ; 
         

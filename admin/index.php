@@ -1,5 +1,10 @@
 <?php
 session_start() ; 
+if (!$_SESSION['user']) {
+    header('Location: login.php') ;
+}
+
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Collect form data
     $name = $_POST['name'];
@@ -33,15 +38,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body>
 
-<div style="float : right ; margin-bottom : 20px !imoortant ; ">
+<div  style="  margin-bottom : 20px !imoortant ; margin-top : 10px ; margin-left : 10px">
     Welcome back <?php echo $_SESSION['user']['username'] ;  ?> ,
-    <a href="logout.php">Logout.</a>
+    <a href="logout.php">Logout. <i class="fa fa-sign-out" aria-hidden="true"></i></a>
 </div>
 
-<div class="container mt-5">
-  <h2 style="margin-top : 20px !important ; ">Category Management</h2>
+<div class="container mt-5" style="margin-top : 60px !important ; ">
+  <h2 >Category Management</h2>
   <button class="btn btn-primary" data-toggle="modal" data-target="#addCategoryModal">
     <i class="fa fa-plus-circle" aria-hidden="true"></i> Add Category</button>
+
+
+    <a href="products.php" class="btn btn-success">
+        <i class="fa fa-archive" aria-hidden="true"></i>  
+        Products Management
+    </a>
+
   <table class="table mt-3">
     <thead>
       <tr>
@@ -67,6 +79,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
+
+        
+
       </div>
       
       <div class="modal-body">
