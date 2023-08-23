@@ -8,6 +8,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $imagePath = 'images/' . $image['name'];
     move_uploaded_file($image['tmp_name'], $imagePath);
 
+    echo($name + $description+$image['name']) ; 
+
     // TODO: Validate and sanitize input data as needed
 
     // Replace with your database connection details

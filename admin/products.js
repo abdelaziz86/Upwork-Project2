@@ -13,7 +13,7 @@ $(document).ready(function () {
 
     // Collect form data
     var formData = new FormData(this);
-
+      console.log("FORM DATA : " + formData); 
     // Make an AJAX POST request to add the new product
     $.ajax({
       url: "add_product.php", // Replace with the path to your PHP script
@@ -23,7 +23,7 @@ $(document).ready(function () {
       contentType: false,
       success: function (response) {
         // Handle the response (e.g., refresh product list)
-        console.log(response);
+        console.log("RESPONSE " +response);
         loadProducts();
 
         $("#addProductModal").modal("hide"); // Close the modal

@@ -62,7 +62,7 @@ if (!$_SESSION['user']) {
       </div>
       
       <div class="modal-body">
-        <form id="productForm">
+        <form id="productForm"  enctype="multipart/form-data">
             <div class="form-group">
             <label for="productName">Name</label>
             <input type="text" class="form-control" id="productName" name="productName" placeholder="Product Name" required>
@@ -73,7 +73,7 @@ if (!$_SESSION['user']) {
             </div>
             <div class="form-group">
             <label for="productImage">Image</label>
-            <input type="file" class="form-control" id="productImage" name="productImage" required>
+            <input type="file" id="image" name="image" accept="image/*" required>
             </div>
             <button type="submit" class="btn btn-primary" name="addProduct">Add Product</button>
         </form>
