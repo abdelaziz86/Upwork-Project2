@@ -54,12 +54,15 @@ $(document).ready(function () {
             '<img src="images/' +
             product.image +
             '" width="200" style="box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; border-radius : 10px">' +
-            "</td>" + 
+            "</td>" +
             "<td>" +
             product.name +
             "</td>" +
             "<td>" +
             product.description +
+            "</td>" +
+            "<td>" +
+            product.category_name +
             "</td>" +
             "<td>" +
             '<button class="btn btn-info edit-button" data-toggle="modal" data-target="#editProductModal" data-id="' +

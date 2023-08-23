@@ -39,6 +39,7 @@ if (!$_SESSION['user']) {
         <th>Image</th>
         <th>Name</th>
         <th>Description</th>
+        <th>Category</th>
         <th>Action</th>
       </tr>
     </thead>
