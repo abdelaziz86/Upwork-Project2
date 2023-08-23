@@ -83,6 +83,47 @@ if (!$_SESSION['user']) {
   </div>
 </div>
 
+
+
+
+
+
+
+
+
+<!-- Modal for editing a product -->
+<div class="modal fade" id="editProductModal" tabindex="-1" aria-labelledby="editProductModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editProductModalLabel">Edit Product</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="editProductForm" enctype="multipart/form-data">
+          <input type="hidden" id="editProductId" name="editProductId">
+          <div class="form-group">
+            <label for="editName">Name</label>
+            <input type="text" class="form-control" id="editProductName" name="editName" required>
+          </div>
+          <div class="form-group">
+            <label for="editDescription">Description</label>
+            <textarea class="form-control" id="editProductDescription" name="editDescription" rows="3" required></textarea>
+          </div>
+          <div class="form-group">
+            <label for="editImage">Image</label>
+            <input type="file" id="editImage" name="editImage" accept="image/*">
+          </div>
+          <button type="submit" class="btn btn-primary" name="updateProduct">Update Product</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 <!-- Similar to your edit and delete modals, create edit and delete modals for products here -->
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

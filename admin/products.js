@@ -35,7 +35,8 @@ $(document).ready(function () {
     $("#editProductName").val(product.name);
     $("#editProductDescription").val(product.description);
     // Store the product ID for updating
-    $("#editProductId").val(product.id);
+      $("#editProductId").val(product.id);
+      console.log(product.name); 
   }
 
   // Function to fetch and populate products
@@ -50,18 +51,15 @@ $(document).ready(function () {
           var row =
             "<tr>" +
             "<td>" +
-            product.id +
-            "</td>" +
+            '<img src="images/' +
+            product.image +
+            '" width="200" style="box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; border-radius : 10px">' +
+            "</td>" + 
             "<td>" +
             product.name +
             "</td>" +
             "<td>" +
             product.description +
-            "</td>" +
-            "<td>" +
-            '<img src="images/' +
-            product.image +
-            '" width="50">' +
             "</td>" +
             "<td>" +
             '<button class="btn btn-info edit-button" data-toggle="modal" data-target="#editProductModal" data-id="' +
@@ -86,6 +84,7 @@ $(document).ready(function () {
             $("#editProductModal").modal("show");
           }
         });
+
 
         $(".delete-button").click(function () {
           var productId = $(this).data("id");
