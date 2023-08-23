@@ -12,7 +12,7 @@ $(document).ready(function () {
     e.preventDefault();
 
     // Collect form data
-    var formData = new FormData(this);
+    var formData = $(this).serialize();
       console.log("FORM DATA : " + formData); 
     // Make an AJAX POST request to add the new product
     $.ajax({

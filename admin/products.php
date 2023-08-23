@@ -65,11 +65,11 @@ if (!$_SESSION['user']) {
         <form id="productForm"  enctype="multipart/form-data">
             <div class="form-group">
             <label for="productName">Name</label>
-            <input type="text" class="form-control" id="productName" name="productName" placeholder="Product Name" required>
+            <input type="text" class="form-control" id="productName" name="name" placeholder="Product Name" required>
             </div>
             <div class="form-group">
             <label for="productDescription">Description</label>
-            <textarea class="form-control" id="productDescription" name="productDescription" placeholder="Product Description" rows="3" required></textarea>
+            <textarea class="form-control" id="productDescription" name="description" placeholder="Product Description" rows="3" required></textarea>
             </div>
             <div class="form-group">
             <label for="productImage">Image</label>
