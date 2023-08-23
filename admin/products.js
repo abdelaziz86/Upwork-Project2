@@ -34,9 +34,28 @@ $(document).ready(function () {
   function populateEditForm(product) {
     $("#editProductName").val(product.name);
     $("#editProductDescription").val(product.description);
-    // Store the product ID for updating
-      $("#editProductId").val(product.id);
-      console.log(product.name); 
+    $("#editProductId").val(product.id);
+
+    // Fetch and populate the category dropdown
+    $.ajax({
+      url: "get_categories.php", // Replace with the path to your PHP script to fetch categories
+      method: "GET",
+      success: function (categories) {
+        $("#editProductCategory").empty();
+
+        categories.forEach(function (category) {
+          $("#editProductCategory").append(
+            $("<option>", {
+              value: category.name, // Use the category ID as the value
+              text: category.name, // Display the category name
+            })
+          );
+        });
+
+        // Set the selected category for the edited product
+        $("#editProductCategory").val(product.category_name);
+      },
+    });
   }
 
   // Function to fetch and populate products
@@ -155,7 +174,7 @@ $(document).ready(function () {
           categories.forEach(function (category) {
             $("#productCategory").append(
               $("<option>", {
-                value: category.id, // Use the category ID as the value
+                value: category.name, // Use the category ID as the value
                 text: category.name, // Display the category name
               })
             );
@@ -166,5 +185,12 @@ $(document).ready(function () {
 
     // Call this function when the page loads and after adding or updating a product
     loadCategoriesDropdown();
+
+
+
+
+
+
+    
 
 });

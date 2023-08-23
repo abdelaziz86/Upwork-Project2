@@ -4,6 +4,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $productId = $_POST['editProductId'];
     $name = $_POST['editName'];
     $description = $_POST['editDescription'];
+    $category_name = $_POST['editProductCategory']; // Updated line
 
     // TODO: Validate and sanitize input data as needed
 
@@ -26,14 +27,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $newImagePath = 'images/' . $newImage['name'];
         move_uploaded_file($newImage['tmp_name'], $newImagePath);
 
-        // Update the product with the new image path
-        $query = $db->prepare("UPDATE product SET name=?, description=?, image=? WHERE id=?");
-        $query->execute([$name, $description, $newImage['name'], $productId]);
+        // Update the product with the new image path and category
+        $query = $db->prepare("UPDATE product SET name=?, description=?, image=?, category_name=? WHERE id=?");
+        $query->execute([$name, $description, $newImage['name'], $category_name, $productId]);
     } else {
-        // No new image uploaded, only update text fields
+        // No new image uploaded, only update text fields and category
         require_once 'connect.php';
-        $query = $db->prepare("UPDATE product SET name=?, description=? WHERE id=?");
-        $query->execute([$name, $description, $productId]);
+        $query = $db->prepare("UPDATE product SET name=?, description=?, category_name=? WHERE id=?");
+        $query->execute([$name, $description, $category_name, $productId]);
     }
 
     echo "Product updated successfully!";

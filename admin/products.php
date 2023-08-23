@@ -124,7 +124,7 @@ if (!$_SESSION['user']) {
           </div>
           <div class="form-group">
             <label for="editCategory">Category</label>
-            <select class="form-control" id="editProductCategory" name="editCategory_id" required>
+            <select class="form-control" id="editProductCategory" name="editProductCategory"  required>
               <!-- The options will be populated dynamically using JavaScript -->
             </select>
           </div>
