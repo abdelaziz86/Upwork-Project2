@@ -1,4 +1,5 @@
 <?php
+session_start() ; 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Collect form data
     $name = $_POST['name'];
@@ -33,7 +34,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
 
 <div style="float : right ; margin-bottom : 20px !imoortant ; ">
-    Welcome back
+    Welcome back <?php echo $_SESSION['user']['username'] ;  ?> ,
+    <a href="logout.php">Logout.</a>
 </div>
 
 <div class="container mt-5">
