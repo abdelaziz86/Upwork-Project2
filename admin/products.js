@@ -11,25 +11,25 @@ $(document).ready(function () {
   $("#productForm").submit(function (e) {
     e.preventDefault();
 
-    // Collect form data
-    var formData = $(this).serialize();
+    // Create a FormData object to collect form data
+    var formData = new FormData(this);
       console.log("FORM DATA : " + formData); 
     // Make an AJAX POST request to add the new product
     $.ajax({
-      url: "add_product.php", // Replace with the path to your PHP script
+      url: "add_product.php",
       method: "POST",
-      data: formData,
+      data: formData, // Send the FormData object directly
       processData: false,
       contentType: false,
       success: function (response) {
-        // Handle the response (e.g., refresh product list)
-        console.log("RESPONSE " +response);
+        console.log(response);
         loadProducts();
 
         $("#addProductModal").modal("hide"); // Close the modal
       },
     });
   });
+
 
   function populateEditForm(product) {
     $("#editProductName").val(product.name);

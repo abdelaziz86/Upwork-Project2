@@ -72,6 +72,11 @@ if (!$_SESSION['user']) {
             <textarea class="form-control" id="productDescription" name="description" placeholder="Product Description" rows="3" required></textarea>
             </div>
             <div class="form-group">
+                <label for="productCategoryName">Category Name</label>
+                <input type="text" class="form-control" id="productCategoryName" name="category_name" placeholder="Category Name" required>
+            </div>
+
+            <div class="form-group">
             <label for="productImage">Image</label>
             <input type="file" id="image" name="image" accept="image/*" required>
             </div>
