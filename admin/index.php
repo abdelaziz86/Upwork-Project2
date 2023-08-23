@@ -1,3 +1,24 @@
+<?php
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Collect form data
+    $name = $_POST['name'];
+    $title = $_POST['title'];
+    $description = $_POST['description'];
+
+    // TODO: Validate and sanitize input data as needed
+
+    // Perform database operations to add the new category
+    // Replace with your database connection and query
+    $db = new PDO('mysql:host=localhost;dbname=vipin', 'root', '');
+    $query = $db->prepare("INSERT INTO category (name, title, description) VALUES (?, ?, ?)");
+    $query->execute([$name, $title, $description]);
+
+    echo "Category added successfully!";
+}
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -36,9 +57,28 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
+      
       <div class="modal-body">
-        <!-- Add category form will be placed here -->
-      </div>
+        <form id="categoryForm">
+            <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" name="name" placeholder="Category Name" required>
+            </div>
+            <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" class="form-control" id="title" name="title" placeholder="Category Title" required>
+            </div>
+            <div class="form-group">
+            <label for="description">Description</label>
+            <textarea class="form-control" id="description" name="description" placeholder="Category Description" rows="3" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" name="addCategory">Add Category</button>
+        </form>
+    </div>
+
+
+
+
     </div>
   </div>
 </div>
