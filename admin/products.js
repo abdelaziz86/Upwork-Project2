@@ -135,5 +135,36 @@ $(document).ready(function () {
   });
 
   // Call the loadProducts function when the page loads
-  loadProducts();
+    loadProducts();
+    
+
+
+
+
+
+
+
+
+    function loadCategoriesDropdown() {
+      $.ajax({
+        url: "get_categories.php", // Replace with the path to your PHP script to fetch categories
+        method: "GET",
+        success: function (categories) {
+          $("#productCategory").empty();
+
+          categories.forEach(function (category) {
+            $("#productCategory").append(
+              $("<option>", {
+                value: category.id, // Use the category ID as the value
+                text: category.name, // Display the category name
+              })
+            );
+          });
+        },
+      });
+    }
+
+    // Call this function when the page loads and after adding or updating a product
+    loadCategoriesDropdown();
+
 });

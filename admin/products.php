@@ -71,10 +71,14 @@ if (!$_SESSION['user']) {
             <label for="productDescription">Description</label>
             <textarea class="form-control" id="productDescription" name="description" placeholder="Product Description" rows="3" required></textarea>
             </div>
+
             <div class="form-group">
-                <label for="productCategoryName">Category Name</label>
-                <input type="text" class="form-control" id="productCategoryName" name="category_name" placeholder="Category Name" required>
+            <label for="productCategory">Category</label>
+            <select class="form-control" id="productCategory" name="category_name" required>
+                <!-- The options will be populated dynamically using JavaScript -->
+            </select>
             </div>
+
 
             <div class="form-group">
             <label for="productImage">Image</label>
@@ -97,6 +101,7 @@ if (!$_SESSION['user']) {
 
 
 <!-- Modal for editing a product -->
+<!-- Modal for editing a product -->
 <div class="modal fade" id="editProductModal" tabindex="-1" aria-labelledby="editProductModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -118,6 +123,12 @@ if (!$_SESSION['user']) {
             <textarea class="form-control" id="editProductDescription" name="editDescription" rows="3" required></textarea>
           </div>
           <div class="form-group">
+            <label for="editCategory">Category</label>
+            <select class="form-control" id="editProductCategory" name="editCategory_id" required>
+              <!-- The options will be populated dynamically using JavaScript -->
+            </select>
+          </div>
+          <div class="form-group">
             <label for="editImage">Image</label>
             <input type="file" id="editImage" name="editImage" accept="image/*">
           </div>
@@ -127,6 +138,7 @@ if (!$_SESSION['user']) {
     </div>
   </div>
 </div>
+
 
 
 <!-- Similar to your edit and delete modals, create edit and delete modals for products here -->
