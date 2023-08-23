@@ -27,12 +27,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Category CRUD</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 </head>
 <body>
 
+<div style="float : right ; margin-bottom : 20px !imoortant ; ">
+    Welcome back
+</div>
+
 <div class="container mt-5">
-  <h2>Category Management</h2>
-  <button class="btn btn-primary" data-toggle="modal" data-target="#addCategoryModal">Add Category</button>
+  <h2 style="margin-top : 20px !important ; ">Category Management</h2>
+  <button class="btn btn-primary" data-toggle="modal" data-target="#addCategoryModal">
+    <i class="fa fa-plus-circle" aria-hidden="true"></i> Add Category</button>
   <table class="table mt-3">
     <thead>
       <tr>

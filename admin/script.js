@@ -64,11 +64,11 @@ $(document).ready(function () {
             "</td>" +
             "<td>" +
             '<button class="btn btn-info edit-button" data-toggle="modal" data-target="#editCategoryModal" data-id="' +
-  category.id +
-  '">Edit</button>'+
+            category.id +
+            '"> <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button > ' +
             '<button class="btn btn-danger delete-button" data-id="' +
             category.id +
-            '">Delete</button>' +
+            '"> <i class="fa fa-trash" aria-hidden="true"></i> Delete</button>' +
             "</td>" +
             "</tr>";  
           $("#categoryTableBody").append(row);
@@ -88,12 +88,68 @@ $(document).ready(function () {
             $("#editCategoryModal").modal("show");
           }
         });
+
+
+
+        $(".delete-button").click(function () {
+          var categoryId = $(this).data("id");
+
+          // Confirm deletion
+          if (confirm("Are you sure you want to delete this category?")) {
+            // Make an AJAX POST request to delete the category
+            $.ajax({
+              url: "delete_category.php", // Replace with the path to your PHP script
+              method: "POST",
+              data: { categoryId: categoryId }, // Pass the categoryId to the script
+              success: function (response) {
+                // Handle the response (e.g., refresh category list)
+                console.log(response);
+                loadCategories();
+              },
+            });
+          }
+        });
+
+
+
+
+
+
+
       },
     });
   }
+
+
+  $("#editCategoryForm").submit(function (e) {
+    e.preventDefault();
+
+    // Collect form data
+    var formData = $(this).serialize();
+
+    // Make an AJAX POST request to update the category
+    $.ajax({
+      url: "update_category.php", // Replace with the path to your PHP script
+      method: "POST",
+      data: formData,
+      success: function (response) {
+        // Handle the response (e.g., refresh category list)
+        console.log(response);
+        loadCategories();
+
+        $("#editCategoryModal").modal("hide"); // Close the modal
+      },
+    });
+  });
+
+
 
     // ... Existing code ...
 
     // Call the loadCategories function when the page loads
     loadCategories();
 });
+
+
+
+ 
