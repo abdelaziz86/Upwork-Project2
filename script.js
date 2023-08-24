@@ -141,6 +141,10 @@ $(document).ready(function () {
   var subcategoryImage = {};
   var subcategoryDescriptions = {};
 
+
+  //======== used for moving automatically between subcategories
+  var subcategories = [];
+
   fetchProducts()
     .done(function (products) {
       for (var i = 0; i < products.length; i++) {
@@ -149,6 +153,10 @@ $(document).ready(function () {
         subcategoryTexts[name] = product.name;
         subcategoryImage[name] = "admin/images/"+product.image;
         subcategoryDescriptions[name] = product.description;
+        
+        subcategories[i] = product.name;
+        console.log(subcategories[i]); 
+        
       }
     })
     .fail(function (error) {
@@ -160,41 +168,7 @@ $(document).ready(function () {
 
   // Loop through the products array and populate the objects
   
-  console.log(subcategoryImage);
-  // var subcategoryTexts = {
-  //   outlook: "See your mail while you browse",
-  //   onenote: "Capture your thoughts and ideas",
-  //   microsoft365: "Enhance your productivity",
-
-  //   electronics: "Product 1  subcategory 2",
-  //   mobile: "Product 2  subcategory 2",
-  //   computer: "Product 3  subcategory 2",
-  // };
-  // var subcategoryImage = {
-  //   outlook:
-  //     "https://www.tunisianet.com.tn/306796-home/pc-portable-asus-vivobook-16-i5-11300h-12-go-win11-silver.jpg",
-  //   onenote:
-  //     "https://www.tunisianet.com.tn/292946-home/portable-hp-probook-450-g9-i5-12e-gen-8-go.jpg",
-  //   microsoft365:
-  //     "https://www.tunisianet.com.tn/317692-home/pc-portable-asus-vivobook-16-i9-11900h-rtx-3050-4-g-16-go.jpg",
-
-  //   electronics:
-  //     "https://mk-media.mytek.tn/media/catalog/product/cache/4635b69058c0dccf0c8109f6ac6742cc/i/p/iphone-se-2022-64-go-midnight-apple.jpg",
-  //   mobile:
-  //     "https://mk-media.mytek.tn/media/catalog/product/cache/4635b69058c0dccf0c8109f6ac6742cc/i/p/iphone_11_64_go_vert_-_apple.jpg",
-  //   computer:
-  //     "https://mk-media.mytek.tn/media/catalog/product/cache/4635b69058c0dccf0c8109f6ac6742cc/i/p/iph-11-64-black_3.jpg",
-  // };
-  // var subcategoryDescriptions = {
-  //   outlook: "See your mail while you browse desc",
-  //   onenote: "Capture your thoughts and ideas desc",
-  //   microsoft365: "Enhance your productivity desc",
-
-  //   electronics: "Product 1  subcategory 2 description",
-  //   mobile: "Product 2  subcategory 2 description",
-  //   computer: "Product 3  subcategory 2 description",
-  // };
-
+  
 
 
 
@@ -300,16 +274,17 @@ $(document).ready(function () {
 
 
   // ===================== SWITCHING SUBACTEGORIES AUTOMATICALLY ==================================
-  var subcategories = [
-    "outlook",
-    "onenote",
-    "microsoft365",
-    "electronics",
-    "mobile",
-    "computer",
-  ];
+  // var subcategories = [
+  //   "outlook",
+  //   "onenote",
+  //   "microsoft365",
+  //   "electronics",
+  //   "mobile",
+  //   "computer",
+  // ];
 
 
+  console.log(subcategories);
 
 
   var timeoutId;

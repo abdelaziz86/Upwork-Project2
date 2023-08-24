@@ -1,3 +1,19 @@
+<?php 
+require_once 'admin/connect.php';
+
+// Retrieve all products from the database
+$query = $db->prepare("SELECT * FROM product");
+$query->execute();
+$products = $query->fetchAll(PDO::FETCH_ASSOC);
+
+$query = $db->prepare("SELECT * FROM category ORDER BY name");
+$query->execute();
+$categories = $query->fetchAll(PDO::FETCH_ASSOC);
+
+
+?>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -59,50 +75,51 @@
     <div class="divPart2"> 
 
 
-        <!-- <div class="row">
-
-            <div class="col-1">
-                <div class="subcategory-arrows">
-                    <button class="arrow left-arrow"><i class="fa fa-chevron-left" aria-hidden="true"></i></button>
-                </div>
-            </div>
-
-            <div class="col-10"> -->
+         
 
                 <!-- ===== SUB CATEGORIES 1 ==== -->
+                <?php 
+                    $total = 1 ; 
+                    foreach ($categories as $category) { ?>
+                    <div class="subcategories-container">
+                        <div class="subcategories <?php echo 'subcategories'.$total ;  ?>" style="margin-top: 30px">
+                            <?php
+                                $count = 0 ; 
+                                foreach ($products as $product) {
+                                    if ($product['category_name'] != $category['name']) {
+                                        
+                                        if ($count == 0) {
+                                            echo '<a class="subcategory-link firstSub'.$total.'" href="" data-subcategory="'.$product['name'].'">'.$product['name'].'</a>';
 
-                <div class="subcategories-container">
+                                        } else {
+                                            echo '<a class="subcategory-link" href="" data-subcategory="'.$product['name'].'">'.$product['name'].'</a>';
+                                        }
+                                        $count++ ;
+                                    }
+                                }
+                            ?>
 
-                    <div class="subcategories subcategories1" style="margin-top: 30px">
-                        <a class="subcategory-link firstSub1" href="" data-subcategory="outlook">Outlook</a>
-                        <a class="subcategory-link" href="" data-subcategory="onenote">OneNote</a>
-                        <a class="subcategory-link" href="" data-subcategory="microsoft365">Microsoft 365</a> 
-
-                        <br>
+ 
+                            <br>
+                        </div>
                     </div>
-                </div>
-
+                <?php 
+                        $total++  ;
+                    } 
+                    
+                ?>
                 <!-- ===== SUB CATEGORIES 2==== -->
 
-                <div class="subcategories-container">
+                <!-- <div class="subcategories-container">
                     <div class="subcategories subcategories2" >
                         <a class="subcategory-link firstSub2" href="" data-subcategory="electronics">Electronics</a>
                         <a class="subcategory-link" href="" data-subcategory="mobile">Mobile</a>
                         <a class="subcategory-link" href="" data-subcategory="computer">Computer</a> 
                     </div>
-                </div>
+                </div> -->
 
 
-            <!-- </div>
-
-            <div class="col-1">
-                <div class="subcategory-arrows"> 
-                    <button class="arrow right-arrow"><i class="fa fa-chevron-right" aria-hidden="true"></i></button>
-                </div>
-
-            </div>
-        </div> -->
- 
+            
 
 
 

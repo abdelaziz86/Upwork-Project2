@@ -3,7 +3,7 @@
 require_once 'connect.php';
 
 // Retrieve all products from the database
-$query = $db->prepare("SELECT * FROM product");
+$query = $db->prepare("SELECT * FROM product ORDER BY category_name");
 $query->execute();
 $products = $query->fetchAll(PDO::FETCH_ASSOC);
 
