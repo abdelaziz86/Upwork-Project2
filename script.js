@@ -93,8 +93,10 @@ $(document).ready(function () {
 
     // === animation
     for (var i = 1; i <= 10; i++) {
-      $(".subcategories" + i).hide();
-      console.log("hiding " + ".subcategories" + i);
+      if ((".subcategories" + i) != fadeIn) {
+        $(".subcategories" + i).hide();
+        // console.log("hiding " + ".subcategories" + i);
+      }
     }
     //$(hide).hide();
     $(fadeIn).fadeIn();
@@ -214,30 +216,70 @@ $(document).ready(function () {
     }
     isScrollingEnabled = false;
 
+
+    // ======= SCROLLING DOWN  ====================
     if (delta > 0) {
-      console.log("Scrolling up");
-      // Put your code for scrolling up here
-      // console.log(
-      //   ".category-link[data-category='" +
-      //     Object.keys(allCategories)[currentCategory + 1] +
-      //     "']"
-      // );
-
+      console.log("Current category : " + currentCategory + ", Length categories : "+allCategories.length);
+      if (currentCategory <= Object.keys(allCategories).length) {
+        currentCategory++;
+      }  
+       
         
-      console.log(".subcategories" + (currentCategory + 1));
+      var currentCategoryKey = Object.keys(allCategories)[currentCategory];
+       
       categoryOne(
-        ".category-link[data-category='" + Object.keys(allCategories)[currentCategory+2] + "']",
+        ".category-link[data-category='" + Object.keys(allCategories)[currentCategory] + "']",
         ".subcategories1",
-        ".subcategories"+(currentCategory+2)
+        ".subcategories"+(currentCategory+1)
       );
-      swappingProducts(
-        ".firstSub2",
-        "https://mk-media.mytek.tn/media/catalog/product/cache/4635b69058c0dccf0c8109f6ac6742cc/i/p/iphone-se-2022-64-go-midnight-apple.jpg",
-        "Product 1  subcategory 2",
-        "Product 1  subcategory 2 description"
-      );
+      
+      var firstProd = {};
 
-      category = "create";
+      fetchProducts()
+        .done(function (products) {
+          for (var i = 0; i < products.length; i++) {
+            
+
+            // console.log(
+            //   "Comparing:",
+            //   products[i]["category_name"],
+            //   currentCategoryKey
+            // );
+
+            if (products[i]["category_name"] === currentCategoryKey) {
+              firstProd = products[i];
+              // console.log(
+              //   "FOUND MATCH - FIRST PROD : " +
+              //     firstProd["image"] +
+              //     ", key : " +
+              //     currentCategoryKey
+              // );
+              break;
+            }
+          }
+
+
+          swappingProducts(
+            ".firstSub" + (currentCategory + 2),
+            "admin/images/"+firstProd["image"],
+            firstProd["name"],
+            firstProd["description"]
+          );
+        })
+        .fail(function (error) {
+          console.error("Error fetching products:", error);
+        });
+
+      
+
+      swappingPartOne(
+        allCategories[currentCategoryKey].text1,
+        allCategories[currentCategoryKey].text2
+      ); 
+
+
+
+      category = Object.keys(allCategories)[currentCategory];
       currentIndex = 3;
 
 
@@ -246,30 +288,59 @@ $(document).ready(function () {
 
        
     } else {
-      console.log("Scrolling down");
-      // Put your code for scrolling down here
+
+      // ======= SCROLLING UP  ====================
+      if (currentCategory > 0) {
+        currentCategory--;
+      }
+      var currentCategoryKey = Object.keys(allCategories)[currentCategory];
 
       categoryOne(
-        ".category-link[data-category='sidebar']",
-        ".subcategories2",
-        ".subcategories1"
-      );
-      swappingProducts(
-        ".firstSub1",
-        "https://www.tunisianet.com.tn/306796-home/pc-portable-asus-vivobook-16-i5-11300h-12-go-win11-silver.jpg",
-        "See your mail while you browse",
-        "See your mail while you browse desc"
+        ".category-link[data-category='" +
+          Object.keys(allCategories)[currentCategory] +
+          "']",
+        ".subcategories1",
+        ".subcategories" + (currentCategory + 1)
       );
 
-      var category = "sidebar";
+      var firstProd = {};
+
+      fetchProducts()
+        .done(function (products) {
+          for (var i = 0; i < products.length; i++) { 
+
+            if (products[i]["category_name"] === currentCategoryKey) {
+              firstProd = products[i];
+               
+              break;
+            }
+          }
+
+          swappingProducts(
+            ".firstSub" + (currentCategory + 2),
+            "admin/images/" + firstProd["image"],
+            firstProd["name"],
+            firstProd["description"]
+          );
+        })
+        .fail(function (error) {
+          console.error("Error fetching products:", error);
+        });
+
+      swappingPartOne(
+        allCategories[currentCategoryKey].text1,
+        allCategories[currentCategoryKey].text2
+      ); 
+
+      var category = Object.keys(allCategories)[currentCategory];
       currentIndex = 0;
     }
 
     // ======= part 1 text ====================
-    swappingPartOne(
-      categoryTexts[category].text1,
-      categoryTexts[category].text2
-    );
+    // swappingPartOne(
+    //   categoryTexts[category].text1,
+    //   categoryTexts[category].text2
+    // );
 
     e.preventDefault();
 
@@ -279,6 +350,10 @@ $(document).ready(function () {
   });
 
   // ================= END SCROLLING BETWEEN CATEGORIES =================================
+
+
+
+
 
   //=============== CLICKING SUBCATEGORY ======================
 
@@ -509,46 +584,6 @@ $(document).ready(function () {
 
 
 
-
-
-  // ============================ CLICKING CATEGORY 1 ==================
-  // $(".category-link[data-category='sidebar']").click(function (e) {
-  //   e.preventDefault();
-  //   categoryOne(
-  //     ".category-link[data-category='sidebar']",
-  //     ".subcategories2",
-  //     ".subcategories1"
-  //   );
-  //   swappingProducts(
-  //     ".firstSub1",
-  //     "https://www.tunisianet.com.tn/306796-home/pc-portable-asus-vivobook-16-i5-11300h-12-go-win11-silver.jpg",
-  //     "See your mail while you browse",
-  //     "See your mail while you browse desc"
-  //   );
-
-  //   var category = "sidebar";
-  //   currentIndex = 0;
-  // });
-
-  //  ======================== CLICKING CATEGORY 2 ==============================
-  // $(".category-link[data-category='create']").click(function (e) {
-  //   e.preventDefault();
-
-  //   categoryOne(
-  //     ".category-link[data-category='create']",
-  //     ".subcategories1",
-  //     ".subcategories2"
-  //   );
-  //   swappingProducts(
-  //     ".firstSub2",
-  //     "https://mk-media.mytek.tn/media/catalog/product/cache/4635b69058c0dccf0c8109f6ac6742cc/i/p/iphone-se-2022-64-go-midnight-apple.jpg",
-  //     "Product 1  subcategory 2",
-  //     "Product 1  subcategory 2 description"
-  //   );
-
-  //   category = "create";
-  //   currentIndex = 3;
-  // });
 });
 
 // =============== loading animations =====================
@@ -561,8 +596,10 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   // ===================== ARROWS =======================
-
-  $(".subcategories2").hide();
+  for (var i = 2; i <= 15; i++) {
+    $(".subcategories" + i).hide();
+  }
+  // $(".subcategories2").hide();
 
   $(".left-arrow").click(function () {
     $(".subcategories-container").animate(

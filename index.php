@@ -86,7 +86,7 @@ $categories = $query->fetchAll(PDO::FETCH_ASSOC);
                             <?php
                                 $count = 0 ; 
                                 foreach ($products as $product) {
-                                    if ($product['category_name'] != $category['name']) {
+                                    if ($product['category_name'] == $category['name']) {
                                         
                                         if ($count == 0) {
                                             echo '<a class="subcategory-link firstSub'.$total.'" href="" data-subcategory="'.$product['name'].'">'.$product['name'].'</a>';
@@ -108,21 +108,8 @@ $categories = $query->fetchAll(PDO::FETCH_ASSOC);
                     } 
                     
                 ?>
-                <!-- ===== SUB CATEGORIES 2==== -->
-
-                <!-- <div class="subcategories-container">
-                    <div class="subcategories subcategories2" >
-                        <a class="subcategory-link firstSub2" href="" data-subcategory="electronics">Electronics</a>
-                        <a class="subcategory-link" href="" data-subcategory="mobile">Mobile</a>
-                        <a class="subcategory-link" href="" data-subcategory="computer">Computer</a> 
-                    </div>
-                </div> -->
-
-
-            
-
-
-
+                
+ 
 
         <!-- ======== PRODUCT ========== -->
         <div class="text1parag2">
@@ -184,14 +171,18 @@ $categories = $query->fetchAll(PDO::FETCH_ASSOC);
     <div class="footer-right col-md-7">
         <div class="categories">
             <?php
-                foreach ($categories as $category) { ?>
-
-                <a class="category-link" href="" data-category="<?php echo $category['name'] ?>">
-                    <?php echo $category['name'] ?>
-                </a>
-
-
-            <?php } ?>
+                $count = 0 ; 
+                foreach ($categories as $category) { 
+                    if ($count == 0) {
+                        echo '<a class="category-link active" href="" data-category="'.$category['name'].'">'.$category['name'].'</a>';
+                    } else {
+                        echo '<a class="category-link" href="" data-category="'.$category['name'].'">'.$category['name'].'</a>';
+                    }
+                    $count ++ ; 
+                }?>
+                    
+               
+ 
 
             <!-- <a class="category-link" href="" data-category="sidebar">First Category</a>
             <a class="category-link" href="" data-category="create">Second Category</a> -->
