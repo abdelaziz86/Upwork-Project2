@@ -3,7 +3,7 @@
 require_once 'connect.php' ; 
 
 // Retrieve all categories from the database
-$query = $db->prepare("SELECT * FROM category");
+$query = $db->prepare("SELECT * FROM category ORDER BY name");
 $query->execute();
 $categories = $query->fetchAll(PDO::FETCH_ASSOC);
 

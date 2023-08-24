@@ -55,11 +55,11 @@ $categories = $query->fetchAll(PDO::FETCH_ASSOC);
       <div class="divPart1">
 
         <div class="text1Part1 animate-onload">
-            Free Microsoft 365 apps are easier to use in Edge
+            <?php echo $categories[0]['title'] ;  ?>
         </div>
 
         <div class="text2Part1 animate-onload">
-            Your web apps are just a click away. Get more done with built-in Microsft 465 features on Microsoft Edge.
+            <?php echo $categories[0]['description'] ;  ?>    
         </div>
 
         <button type="button" class="btn btn-primary tryNow1 animate-onload">Try Now</button>
@@ -126,10 +126,26 @@ $categories = $query->fetchAll(PDO::FETCH_ASSOC);
 
         <!-- ======== PRODUCT ========== -->
         <div class="text1parag2">
-            See your mail while you browse
+            <?php 
+                foreach ($products as $product) {
+                    if ($product['category_name'] == $categories[0]['name']) {
+                        echo $product['name'] ;
+                        break ; 
+                    }
+                    
+                }
+            ?>
         </div>
         <div class="text2parag2">
-            You can read your mail while you browse the web all in the same tab with Microsoft Outlook integration in sidebar. Only in microsoft edge.
+            <?php 
+                foreach ($products as $product) {
+                    if ($product['category_name'] == $categories[0]['name']) {
+                        echo $product['name'] ;
+                        break ; 
+                    }
+                    
+                }
+            ?>
         </div>
 
         <button type="button" class="btn btn-outline-primary tryNow3 animate-onload"  >Try Now</button>
@@ -156,8 +172,18 @@ $categories = $query->fetchAll(PDO::FETCH_ASSOC);
     </div>
     <div class="footer-right col-md-7">
         <div class="categories">
-            <a class="category-link" href="" data-category="sidebar">First Category</a>
-            <a class="category-link" href="" data-category="create">Second Category</a>
+            <?php
+                foreach ($categories as $category) { ?>
+
+                <a class="category-link" href="" data-category="<?php echo $category['name'] ?>">
+                    <?php echo $category['name'] ?>
+                </a>
+
+
+            <?php } ?>
+
+            <!-- <a class="category-link" href="" data-category="sidebar">First Category</a>
+            <a class="category-link" href="" data-category="create">Second Category</a> -->
         </div>
     </div>
 

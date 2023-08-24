@@ -1,58 +1,76 @@
-function fetchCategories() {
-  $.ajax({
-    url: "admin/get_categories.php", // Replace with your PHP script URL
-    type: "GET",
-    dataType: "json",
-    success: function (categories) {
-      return categories;
-    },
-    error: function (error) {
-      console.error("Error fetching categories:", error);
-    },
-  });
-}
-
-
-
-
-
-// ===========================================================
-
-$(document).ready(function () {
-   
-  
-  
+$(document).ready(function () { 
 if ($(window).width() <= 768) {
     $(".footer-right .categories").html(`
-                <div class="dropdown categories">
-                    <span>Sub Categories <i class="fa fa-caret-down" aria-hidden="true"></i></span>
-                    <div class="dropdown-content">
-                        <a class="category-link" href="" data-category="sidebar">First Category</a>
-                        <br>
-                        <a class="category-link" href="" data-category="create">Second Category</a>
-                        <br> 
-                    </div>
-                </div>
-            `);
+        <div class="dropdown categories">
+            <span>Sub Categories <i class="fa fa-caret-down" aria-hidden="true"></i></span>
+            <div class="dropdown-content">
+                <a class="category-link" href="" data-category="sidebar">First Category</a>
+                <br>
+                <a class="category-link" href="" data-category="create">Second Category</a>
+                <br> 
+            </div>
+        </div>
+    `);
   }
 });
+
+
+
+
+
 
 $(document).ready(function () {
   var currentIndex = 0;
   var currentCategory = 1;
 
-  var categoryTexts = {
-    sidebar: {
-      text1: "Free Microsoft 365 apps are easier to use in Edge",
-      text2:
-        "Your web apps are just a click away. Get more done with built-in Microsft 465 features on Microsoft Edge.",
-    },
-    create: {
-      text1: "Category 2",
-      text2:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
-    },
-  };
+
+
+  var categoryTexts = {};
+
+  function fetchCategories() {
+    return $.ajax({
+      url: "admin/get_categories.php",
+      type: "GET",
+      dataType: "json",
+    });
+  }
+  
+  fetchCategories()
+    .done(function (categories) {
+      for (var i = 0; i < categories.length; i++) {
+        var category = categories[i];
+        categoryTexts[category.name] = {
+          text1: category.title,
+          text2 : category.description,
+        }
+        
+      }
+    })
+    .fail(function (error) {
+      console.error("Error fetching products:", error);
+    });
+  
+  
+  
+  
+
+  // var categoryTexts = {
+  //   sidebar: {
+  //     text1: "Free Microsoft 365 apps are easier to use in Edge",
+  //     text2:
+  //       "Your web apps are just a click away. Get more done with built-in Microsft 465 features on Microsoft Edge.",
+  //   },
+  //   create: {
+  //     text1: "Category 2",
+  //     text2:
+  //       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
+  //   },
+  // };
+
+
+
+
+
 
   function swappingProducts(subcategoryClass, image, title, desc) {
     $(".subcategory-link").removeClass("active"); // Remove active class from all subcategory links
