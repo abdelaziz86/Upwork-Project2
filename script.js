@@ -462,54 +462,44 @@ $(document).ready(function () {
     );
   }
 
+
+
   function autoChangeSubcategory() {
-    currentIndex = (currentIndex + 1) % subcategories.length;
-    var activeCategory = $(".category-link.active").data("category");
+      currentIndex = (currentIndex + 1) % subcategories.length;
+      var activeCategory = $(".category-link.active").data("category");
+      
+      productsCount = $(".category-link.active").data("products");
+      firstSub = $(".category-link.active").data("number"); 
     
-    
-
-    productsCount = $(".category-link.active").data("products");
-    firstSub = $(".category-link.active").data("number"); 
-    
-    fetchProducts()
-      .done(function (products) {
-        for (var i = 0; i < products.length; i++) {
-          if (products[i]["category_name"] == activeCategory) {
-            productsCount++;  
+      fetchProducts()
+        .done(function (products) {
+          for (var i = 0; i < products.length; i++) {
+            if (products[i]["category_name"] == activeCategory) {
+              productsCount++;  
+            }
           }
-        }
-    })
-    .fail(function (error) {
-      console.error("Error fetching products:", error);
-    });
+      })
+      .fail(function (error) {
+        console.error("Error fetching products:", error);
+      });
 
- 
+    
+      currentIndex = currentIndex % subcategories.length;
+      // console.log("Products count : " + productsCount + ", first sub : " + firstSub + ", current index : " + currentIndex);
+      
+      // if (currentIndex < (productsCount + firstSub)) {
+      //   console.log("changing subcategory to : " + subcategories[currentIndex++]);
+      //   changeSubcategory(subcategories[currentIndex++]);
+      //   currentIndex++;
+      // } else {
+      //   changeSubcategory(subcategories[firstSub]);
+      // }
 
-
-    console.log("Products count : " + productsCount + ", first sub : " + firstSub + ", current index : " + currentIndex);
-    if (currentIndex < (productsCount + firstSub)) {
-      console.log("changing subcategory to : " + subcategories[currentIndex++]);
-      changeSubcategory(subcategories[currentIndex++]);
-      currentIndex++;
-    } else {
-      changeSubcategory(subcategories[firstSub]);
-    }
-    // Set the timeout for the next auto change
-    timeoutId = setTimeout(autoChangeSubcategory, 5000);
-
-
-
-
-
-
-
+      changeSubcategory(subcategories[currentIndex]);  
+      
+      // Set the timeout for the next auto change
+      timeoutId = setTimeout(autoChangeSubcategory, 5000);
   }
-
-
-
-
-
-
 
 
 
