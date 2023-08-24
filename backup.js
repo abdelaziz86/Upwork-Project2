@@ -12,34 +12,23 @@ function fetchCategories() {
   });
 }
 
-
-
-
+function fetchProducts() {
+  $.ajax({
+    url: "admin/get_products.php", // Replace with your PHP script URL
+    type: "GET",
+    dataType: "json",
+    success: function (products) {
+      return products;
+    },
+    error: function (error) {
+      console.error("Error fetching products:", error);
+    },
+  });
+}
 
 // ===========================================================
 
 $(document).ready(function () {
-  function fetchProducts() {
-    return $.ajax({
-      url: "admin/get_products.php",
-      type: "GET",
-      dataType: "json",
-    });
-  }
-
-  fetchProducts()
-    .done(function (products) {
-      console.log("Products fetched:", products[0]);
-    })
-    .fail(function (error) {
-      console.error("Error fetching products:", error);
-    });
-  
-  
-  
-  
-  
-  
   if ($(window).width() <= 768) {
     $(".footer-right .categories").html(`
                 <div class="dropdown categories">
@@ -132,50 +121,9 @@ $(document).ready(function () {
     $(".tryNow2").text("Next");
   }
 
-    
-    
-
-    
-
-    
   // ================= SCROLLING BETWEEN CATEGORIES =================================
   var isScrollingEnabled = true;
   var category = "";
-
-  var subcategoryTexts = {
-    outlook: "See your mail while you browse",
-    onenote: "Capture your thoughts and ideas",
-    microsoft365: "Enhance your productivity",
-
-    electronics: "Product 1  subcategory 2",
-    mobile: "Product 2  subcategory 2",
-    computer: "Product 3  subcategory 2",
-  };
-  var subcategoryImage = {
-    outlook:
-      "https://www.tunisianet.com.tn/306796-home/pc-portable-asus-vivobook-16-i5-11300h-12-go-win11-silver.jpg",
-    onenote:
-      "https://www.tunisianet.com.tn/292946-home/portable-hp-probook-450-g9-i5-12e-gen-8-go.jpg",
-    microsoft365:
-      "https://www.tunisianet.com.tn/317692-home/pc-portable-asus-vivobook-16-i9-11900h-rtx-3050-4-g-16-go.jpg",
-
-    electronics:
-      "https://mk-media.mytek.tn/media/catalog/product/cache/4635b69058c0dccf0c8109f6ac6742cc/i/p/iphone-se-2022-64-go-midnight-apple.jpg",
-    mobile:
-      "https://mk-media.mytek.tn/media/catalog/product/cache/4635b69058c0dccf0c8109f6ac6742cc/i/p/iphone_11_64_go_vert_-_apple.jpg",
-    computer:
-      "https://mk-media.mytek.tn/media/catalog/product/cache/4635b69058c0dccf0c8109f6ac6742cc/i/p/iph-11-64-black_3.jpg",
-  };
-  var subcategoryDescriptions = {
-    outlook: "See your mail while you browse desc",
-    onenote: "Capture your thoughts and ideas desc",
-    microsoft365: "Enhance your productivity desc",
-
-    electronics: "Product 1  subcategory 2 description",
-    mobile: "Product 2  subcategory 2 description",
-    computer: "Product 3  subcategory 2 description",
-  };
-
   $(window).on("mousewheel DOMMouseScroll", function (e) {
     if (!isScrollingEnabled) {
       return;
@@ -249,11 +197,40 @@ $(document).ready(function () {
   $(".subcategory-link").click(function (e) {
     e.preventDefault();
 
-      
-      
-      
     var subcategory = $(this).data("subcategory");
-    // subcategories were defined here
+    var subcategoryTexts = {
+      outlook: "See your mail while you browse",
+      onenote: "Capture your thoughts and ideas",
+      microsoft365: "Enhance your productivity",
+
+      electronics: "Product 1  subcategory 2",
+      mobile: "Product 2  subcategory 2",
+      computer: "Product 3  subcategory 2",
+    };
+    var subcategoryImage = {
+      outlook:
+        "https://www.tunisianet.com.tn/306796-home/pc-portable-asus-vivobook-16-i5-11300h-12-go-win11-silver.jpg",
+      onenote:
+        "https://www.tunisianet.com.tn/292946-home/portable-hp-probook-450-g9-i5-12e-gen-8-go.jpg",
+      microsoft365:
+        "https://www.tunisianet.com.tn/317692-home/pc-portable-asus-vivobook-16-i9-11900h-rtx-3050-4-g-16-go.jpg",
+
+      electronics:
+        "https://mk-media.mytek.tn/media/catalog/product/cache/4635b69058c0dccf0c8109f6ac6742cc/i/p/iphone-se-2022-64-go-midnight-apple.jpg",
+      mobile:
+        "https://mk-media.mytek.tn/media/catalog/product/cache/4635b69058c0dccf0c8109f6ac6742cc/i/p/iphone_11_64_go_vert_-_apple.jpg",
+      computer:
+        "https://mk-media.mytek.tn/media/catalog/product/cache/4635b69058c0dccf0c8109f6ac6742cc/i/p/iph-11-64-black_3.jpg",
+    };
+    var subcategoryDescriptions = {
+      outlook: "See your mail while you browse desc",
+      onenote: "Capture your thoughts and ideas desc",
+      microsoft365: "Enhance your productivity desc",
+
+      electronics: "Product 1  subcategory 2 description",
+      mobile: "Product 2  subcategory 2 description",
+      computer: "Product 3  subcategory 2 description",
+    };
 
     swappingProducts(
       this,
@@ -275,7 +252,39 @@ $(document).ready(function () {
   var timeoutId;
 
   function changeSubcategory(subcategory) {
-    // subcategories was defined here
+    var subcategoryTexts = {
+      outlook: "See your mail while you browse",
+      onenote: "Capture your thoughts and ideas",
+      microsoft365: "Enhance your productivity",
+
+      electronics: "Product 1  subcategory 2",
+      mobile: "Product 2  subcategory 2",
+      computer: "Product 3  subcategory 2",
+    };
+    var subcategoryImage = {
+      outlook:
+        "https://www.tunisianet.com.tn/306796-home/pc-portable-asus-vivobook-16-i5-11300h-12-go-win11-silver.jpg",
+      onenote:
+        "https://www.tunisianet.com.tn/292946-home/portable-hp-probook-450-g9-i5-12e-gen-8-go.jpg",
+      microsoft365:
+        "https://www.tunisianet.com.tn/317692-home/pc-portable-asus-vivobook-16-i9-11900h-rtx-3050-4-g-16-go.jpg",
+
+      electronics:
+        "https://mk-media.mytek.tn/media/catalog/product/cache/4635b69058c0dccf0c8109f6ac6742cc/i/p/iphone-se-2022-64-go-midnight-apple.jpg",
+      mobile:
+        "https://mk-media.mytek.tn/media/catalog/product/cache/4635b69058c0dccf0c8109f6ac6742cc/i/p/iphone_11_64_go_vert_-_apple.jpg",
+      computer:
+        "https://mk-media.mytek.tn/media/catalog/product/cache/4635b69058c0dccf0c8109f6ac6742cc/i/p/iph-11-64-black_3.jpg",
+    };
+    var subcategoryDescriptions = {
+      outlook: "See your mail while you browse desc",
+      onenote: "Capture your thoughts and ideas desc",
+      microsoft365: "Enhance your productivity desc",
+
+      electronics: "Product 1  subcategory 2 description",
+      mobile: "Product 2  subcategory 2 description",
+      computer: "Product 3  subcategory 2 description",
+    };
 
     swappingProducts(
       ".subcategory-link[data-subcategory='" + subcategory + "']",
@@ -297,11 +306,10 @@ $(document).ready(function () {
     } else {
       changeSubcategory(subcategories[currentIndex]);
     }
+
     // Set the timeout for the next auto change
     timeoutId = setTimeout(autoChangeSubcategory, 5000);
   }
-    
-
 
   // Initial subcategory change
   changeSubcategory(subcategories[currentIndex]);
