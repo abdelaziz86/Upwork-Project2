@@ -216,71 +216,105 @@ $(document).ready(function () {
     }
     isScrollingEnabled = false;
 
+    //=========== FETCHING CATEGORIES =======================
+    var allCategories = {}; 
+    var categoryTexts = {};
+    var categoriesLength = 0;
+    
+
+
 
     // ======= SCROLLING DOWN  ====================
     if (delta > 0) {
-      console.log("Current category : " + currentCategory + ", Length categories : "+allCategories.length);
-      if (currentCategory <= Object.keys(allCategories).length) {
-        currentCategory++;
-      }  
-       
-        
-      var currentCategoryKey = Object.keys(allCategories)[currentCategory];
-       
-      categoryOne(
-        ".category-link[data-category='" + Object.keys(allCategories)[currentCategory] + "']",
-        ".subcategories1",
-        ".subcategories"+(currentCategory+1)
-      );
-      
-      var firstProd = {};
 
-      fetchProducts()
-        .done(function (products) {
-          for (var i = 0; i < products.length; i++) {
-            
 
-            // console.log(
-            //   "Comparing:",
-            //   products[i]["category_name"],
-            //   currentCategoryKey
-            // );
-
-            if (products[i]["category_name"] === currentCategoryKey) {
-              firstProd = products[i];
-              // console.log(
-              //   "FOUND MATCH - FIRST PROD : " +
-              //     firstProd["image"] +
-              //     ", key : " +
-              //     currentCategoryKey
-              // );
-              break;
-            }
+      //=========== TEST FETCH =======================
+      fetchCategories()
+        .done(function (categories) {
+          for (var i = 0; i < categories.length; i++) {
+            var category = categories[i];
+            categoryTexts[category.name] = {
+              text1: category.title,
+              text2: category.description,
+            };
           }
 
+          allCategories = categoryTexts;
+          categoriesLength = categories.length;
 
-          swappingProducts(
-            ".firstSub" + (currentCategory + 2),
-            "admin/images/"+firstProd["image"],
-            firstProd["name"],
-            firstProd["description"]
+          // ============== real ===========================
+
+          console.log(
+            "Current category : " +
+              currentCategory +
+              ", Length categories : " +
+              categoriesLength
           );
+          if (currentCategory < categoriesLength-1) {
+            currentCategory++;
+           
+
+
+            var currentCategoryKey = Object.keys(allCategories)[currentCategory];
+
+            categoryOne(
+              ".category-link[data-category='" +
+                Object.keys(allCategories)[currentCategory] +
+                "']",
+              ".subcategories1",
+              ".subcategories" + (currentCategory + 1)
+            );
+
+            var firstProd = {};
+
+            fetchProducts()
+              .done(function (products) {
+                for (var i = 0; i < products.length; i++) {
+                  if (products[i]["category_name"] === currentCategoryKey) {
+                    firstProd = products[i];
+                    break;
+                  }
+                }
+
+                swappingProducts(
+                  ".firstSub" + (currentCategory + 2),
+                  "admin/images/" + firstProd["image"],
+                  firstProd["name"],
+                  firstProd["description"]
+                );
+              })
+              .fail(function (error) {
+                console.error("Error fetching products:", error);
+              });
+
+            swappingPartOne(
+              allCategories[currentCategoryKey].text1,
+              allCategories[currentCategoryKey].text2
+            );
+
+            category = Object.keys(allCategories)[currentCategory];
+            currentIndex = $(".firstSub"+currentCategory+"").data("number");
+          }
+
+          // =============== end real =======================
+
+
+
+
+
         })
         .fail(function (error) {
           console.error("Error fetching products:", error);
         });
-
       
-
-      swappingPartOne(
-        allCategories[currentCategoryKey].text1,
-        allCategories[currentCategoryKey].text2
-      ); 
-
-
-
-      category = Object.keys(allCategories)[currentCategory];
-      currentIndex = 3;
+      
+      
+      
+      
+       
+       
+        
+      
 
 
 
@@ -289,51 +323,77 @@ $(document).ready(function () {
        
     } else {
 
-      // ======= SCROLLING UP  ====================
-      if (currentCategory > 0) {
-        currentCategory--;
-      }
-      var currentCategoryKey = Object.keys(allCategories)[currentCategory];
-
-      categoryOne(
-        ".category-link[data-category='" +
-          Object.keys(allCategories)[currentCategory] +
-          "']",
-        ".subcategories1",
-        ".subcategories" + (currentCategory + 1)
-      );
-
-      var firstProd = {};
-
-      fetchProducts()
-        .done(function (products) {
-          for (var i = 0; i < products.length; i++) { 
-
-            if (products[i]["category_name"] === currentCategoryKey) {
-              firstProd = products[i];
-               
-              break;
-            }
+      //=========== TEST FETCH =======================
+      fetchCategories()
+        .done(function (categories) {
+          for (var i = 0; i < categories.length; i++) {
+            var category = categories[i];
+            categoryTexts[category.name] = {
+              text1: category.title,
+              text2: category.description,
+            };
           }
 
-          swappingProducts(
-            ".firstSub" + (currentCategory + 2),
-            "admin/images/" + firstProd["image"],
-            firstProd["name"],
-            firstProd["description"]
+          allCategories = categoryTexts;
+          categoriesLength = categories.length;
+
+          // ============== real ===========================
+
+          console.log(
+            "Current category : " +
+              currentCategory +
+              ", Length categories : " +
+              categoriesLength
           );
+          if (currentCategory > 0) {
+            currentCategory--;
+           
+
+
+            var currentCategoryKey = Object.keys(allCategories)[currentCategory];
+
+            categoryOne(
+              ".category-link[data-category='" +
+                Object.keys(allCategories)[currentCategory] +
+                "']",
+              ".subcategories1",
+              ".subcategories" + (currentCategory + 1)
+            );
+
+            var firstProd = {};
+
+            fetchProducts()
+              .done(function (products) {
+                for (var i = 0; i < products.length; i++) {
+                  if (products[i]["category_name"] === currentCategoryKey) {
+                    firstProd = products[i];
+                    break;
+                  }
+                }
+
+                swappingProducts(
+                  ".firstSub" + (currentCategory + 2),
+                  "admin/images/" + firstProd["image"],
+                  firstProd["name"],
+                  firstProd["description"]
+                );
+              })
+              .fail(function (error) {
+                console.error("Error fetching products:", error);
+              });
+
+            swappingPartOne(
+              allCategories[currentCategoryKey].text1,
+              allCategories[currentCategoryKey].text2
+            );
+
+            category = Object.keys(allCategories)[currentCategory];
+            currentIndex = $(".firstSub"+currentCategory+"").data("number");
+
+          }
+
+          // =============== end real =======================
         })
-        .fail(function (error) {
-          console.error("Error fetching products:", error);
-        });
-
-      swappingPartOne(
-        allCategories[currentCategoryKey].text1,
-        allCategories[currentCategoryKey].text2
-      ); 
-
-      var category = Object.keys(allCategories)[currentCategory];
-      currentIndex = 0;
     }
 
     // ======= part 1 text ====================
@@ -350,6 +410,11 @@ $(document).ready(function () {
   });
 
   // ================= END SCROLLING BETWEEN CATEGORIES =================================
+
+
+
+
+
 
 
 
@@ -399,18 +464,46 @@ $(document).ready(function () {
 
   function autoChangeSubcategory() {
     currentIndex = (currentIndex + 1) % subcategories.length;
-    // console.log("loool : " + currentIndex);
-    if (currentIndex == 3) {
-      changeSubcategory(subcategories[0]);
+    var activeCategory = $(".category-link.active").data("category");
+    
+    
+
+    productsCount = $(".category-link.active").data("products");
+    firstSub = $(".category-link.active").data("number");
+    // firstSub = $(".firstSub" + activeCategory + "").data("number");
+    
+    fetchProducts()
+      .done(function (products) {
+        for (var i = 0; i < products.length; i++) {
+          if (products[i]["category_name"] == activeCategory) {
+            productsCount++;  
+          }
+        }
+    })
+    .fail(function (error) {
+      console.error("Error fetching products:", error);
+    });
+
+ 
+
+
+    console.log("Products count : " + productsCount + ", first sub : " + firstSub + ", current index : " + currentIndex);
+    if (currentIndex <= (productsCount + firstSub)) {
+      console.log("changing subcategory to : " + subcategories[firstSub]);
+      changeSubcategory(subcategories[firstSub]);
       currentIndex = 0;
-    } else if (currentIndex == 0) {
-      changeSubcategory(subcategories[3]);
-      currentIndex = 3;
     } else {
       changeSubcategory(subcategories[currentIndex]);
     }
     // Set the timeout for the next auto change
     timeoutId = setTimeout(autoChangeSubcategory, 5000);
+
+
+
+
+
+
+
   }
 
 
@@ -430,57 +523,72 @@ $(document).ready(function () {
   // ================ CLICKING CATEGORIES =========================
   fetchCategories()
     .done(function (categories) {
+      console.log("dddddd"); 
       for (var i = 0; i < categories.length; i++) {
         var category = categories[i];
         console.log("hi ?dd");
 
-        // console.log(
-        //   "LOOOOOOOOOOL " +
-        //     ".category-link[data-category='" +
-        //     category["name"] +
-        //     "']"
-        // );
-        $(".category-link[data-category='" + category["name"] + "']").click(
-          function (e) {
-            e.preventDefault();
-            categoryOne(
-              ".category-link[data-category='" + category["name"] + "']",
-              ".subcategories1",
-              ".subcategories"+(i+1)
-            );
-
-            var firstProd = {};
-
-            fetchProducts()
-              .done(function (products) {
-                for (var i = 0; i < products.length; i++) {
-                  if (products[i]["category_name"] == category["name"]) {
-                    firstProd = products[i];
-                    break;
-                  }
-                }
-              })
-              .fail(function (error) {
-                console.error("Error fetching products:", error);
-              });
-
-            swappingProducts(
-              ".firstSub" + (i + 1),
-              firstProd["image"],
-              firstProd["name"],
-              firstProd["description"]
-            );
-
-            var category = category["name"];
-            currentIndex = 0;
-            currentCategory;
-          }
+        console.log(
+          "LOOOOOOOOOOL " +
+            ".category-link[data-category='" +
+            category["name"] +
+            "']"
         );
+
+
+        
       }
     })
     .fail(function (error) {
       console.error("Error fetching products:", error);
     });
+  
+  
+  
+  
+  
+  
+  
+  $(".category-link").click(function ( e ) {
+    e.preventDefault();
+    var categoryValue = $(this).data("category");
+    console.log(".category-link[data-category='" + categoryValue + "']");
+    categoryOne(
+      ".category-link[data-category='" + categoryValue + "']",
+      ".subcategories1",
+      ".subcategories" + $(this).data("number")
+    );
+
+    var firstProd = {};
+
+    fetchProducts()
+      .done(function (products) {
+        for (var i = 0; i < products.length; i++) {
+          if (products[i]["category_name"] == categoryValue) {
+            firstProd = products[i];
+            console.log("fouuuuuuuund : " + firstProd.name);
+            
+            swappingProducts(
+              ".firstSub" + $(this).data("number"),
+              "admin/images/" + firstProd["image"],
+              firstProd["name"],
+              firstProd["description"]
+            );
+
+
+            break;
+          }
+        }
+      })
+      .fail(function (error) {
+        console.error("Error fetching products:", error);
+      });
+
+    
+
+    category = categoryValue;
+    currentIndex = 0; 
+  });
 
   // ================== END CLICKING CATEGORIES =========================
 

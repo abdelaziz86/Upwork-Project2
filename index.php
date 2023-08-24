@@ -79,7 +79,8 @@ $categories = $query->fetchAll(PDO::FETCH_ASSOC);
 
                 <!-- ===== SUB CATEGORIES 1 ==== -->
                 <?php 
-                    $total = 1 ; 
+                    $total = 1 ;
+                    $number = 0 ; 
                     foreach ($categories as $category) { ?>
                     <div class="subcategories-container">
                         <div class="subcategories <?php echo 'subcategories'.$total ;  ?>" style="margin-top: 30px">
@@ -89,13 +90,14 @@ $categories = $query->fetchAll(PDO::FETCH_ASSOC);
                                     if ($product['category_name'] == $category['name']) {
                                         
                                         if ($count == 0) {
-                                            echo '<a class="subcategory-link firstSub'.$total.'" href="" data-subcategory="'.$product['name'].'">'.$product['name'].'</a>';
+                                            echo '<a class="subcategory-link firstSub'.$total.'" href="" data-number="'.$number.'" data-subcategory="'.$product['name'].'">'.$product['name'].'</a>';
 
                                         } else {
                                             echo '<a class="subcategory-link" href="" data-subcategory="'.$product['name'].'">'.$product['name'].'</a>';
                                         }
                                         $count++ ;
                                     }
+                                    $number++ ; 
                                 }
                             ?>
 
@@ -171,14 +173,23 @@ $categories = $query->fetchAll(PDO::FETCH_ASSOC);
     <div class="footer-right col-md-7">
         <div class="categories">
             <?php
-                $count = 0 ; 
+                $count = 0 ;  
+                $totalProducts = 0 ;
+                
                 foreach ($categories as $category) { 
+                    foreach($products as $product) {
+                        if ($product['category_name'] == $category['name']) {
+                            $totalProducts++ ; 
+                        }
+                    }
                     if ($count == 0) {
-                        echo '<a class="category-link active" href="" data-category="'.$category['name'].'">'.$category['name'].'</a>';
+                        echo '<a class="category-link active" href="" data-products="'.$totalProducts.'"  data-number="'.($count+1).'" data-category="'.$category['name'].'">'.$category['name'].'</a>';
                     } else {
-                        echo '<a class="category-link" href="" data-category="'.$category['name'].'">'.$category['name'].'</a>';
+                        echo '<a class="category-link" href="" data-products="'.$totalProducts.'"  data-number="'.($count+1).'" data-category="'.$category['name'].'">'.$category['name'].'</a>';
                     }
                     $count ++ ; 
+                    $totalProducts = 0 ;
+
                 }?>
                     
                
