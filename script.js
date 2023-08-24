@@ -1,4 +1,5 @@
 $(document).ready(function () { 
+  console.log("dd"); 
 if ($(window).width() <= 768) {
     $(".footer-right .categories").html(`
         <div class="dropdown categories">
@@ -21,7 +22,7 @@ if ($(window).width() <= 768) {
 
 $(document).ready(function () {
   var currentIndex = 0;
-  var currentCategory = 1;
+  var currentCategory = 0;
 
   var categoryTexts = {};
   var allProducts = {};
@@ -43,9 +44,11 @@ $(document).ready(function () {
           text1: category.title,
           text2: category.description,
         };
+        //console.log("category text : " + Object.keys(categoryTexts)[i]);
       }
 
       allCategories = categoryTexts; 
+      //console.log("all categories : "+ allCategories);
 
     })
     .fail(function (error) {
@@ -80,6 +83,10 @@ $(document).ready(function () {
     }, 500);
   }
 
+
+
+
+
   function categoryOne(dataCategory, hide, fadeIn) {
     $(".category-link").removeClass("active"); // Remove active class from all subcategory links
     $(dataCategory).addClass("active"); // Add active class to the clicked subcategory link
@@ -92,6 +99,10 @@ $(document).ready(function () {
     //$(hide).hide();
     $(fadeIn).fadeIn();
   }
+
+
+
+
 
   function swappingPartOne(text1, text2) {
     var newText1 = text1;
@@ -126,6 +137,14 @@ $(document).ready(function () {
     $(".tryNow1").text("Try Now");
     $(".tryNow2").text("Next");
   }
+
+
+
+
+
+
+
+  
 
   // ================= SCROLLING BETWEEN CATEGORIES =================================
   var isScrollingEnabled = true;
@@ -198,10 +217,18 @@ $(document).ready(function () {
     if (delta > 0) {
       console.log("Scrolling up");
       // Put your code for scrolling up here
+      // console.log(
+      //   ".category-link[data-category='" +
+      //     Object.keys(allCategories)[currentCategory + 1] +
+      //     "']"
+      // );
+
+        
+      console.log(".subcategories" + (currentCategory + 1));
       categoryOne(
-        ".category-link[data-category='create']",
+        ".category-link[data-category='" + Object.keys(allCategories)[currentCategory+2] + "']",
         ".subcategories1",
-        ".subcategories2"
+        ".subcategories"+(currentCategory+2)
       );
       swappingProducts(
         ".firstSub2",
@@ -330,14 +357,14 @@ $(document).ready(function () {
     .done(function (categories) {
       for (var i = 0; i < categories.length; i++) {
         var category = categories[i];
-        console.log("hi ?");
+        console.log("hi ?dd");
 
-        console.log(
-          "LOOOOOOOOOOL " +
-            ".category-link[data-category='" +
-            category["name"] +
-            "']"
-        );
+        // console.log(
+        //   "LOOOOOOOOOOL " +
+        //     ".category-link[data-category='" +
+        //     category["name"] +
+        //     "']"
+        // );
         $(".category-link[data-category='" + category["name"] + "']").click(
           function (e) {
             e.preventDefault();
