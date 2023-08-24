@@ -140,7 +140,7 @@ $categories = $query->fetchAll(PDO::FETCH_ASSOC);
             <?php 
                 foreach ($products as $product) {
                     if ($product['category_name'] == $categories[0]['name']) {
-                        echo $product['name'] ;
+                        echo $product['description'] ;
                         break ; 
                     }
                     
@@ -152,7 +152,18 @@ $categories = $query->fetchAll(PDO::FETCH_ASSOC);
 
         <br>
 
-        <img id="imageFirst" class="image1 animate-onload" src="https://www.tunisianet.com.tn/306796-home/pc-portable-asus-vivobook-16-i5-11300h-12-go-win11-silver.jpg">    
+        <img id="imageFirst" class="image1 animate-onload" src="
+                <?php 
+                foreach ($products as $product) {
+                    if ($product['category_name'] == $categories[0]['name']) {
+                        echo "admin/images/".$product['image'] ;
+                        break ; 
+                    }
+                    
+                }
+            ?>
+        
+        ">    
         <br>
 
         

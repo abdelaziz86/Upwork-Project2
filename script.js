@@ -49,29 +49,11 @@ $(document).ready(function () {
     .fail(function (error) {
       console.error("Error fetching products:", error);
     });
+
+
+
+
   
-  
-  
-  
-
-  // var categoryTexts = {
-  //   sidebar: {
-  //     text1: "Free Microsoft 365 apps are easier to use in Edge",
-  //     text2:
-  //       "Your web apps are just a click away. Get more done with built-in Microsft 465 features on Microsoft Edge.",
-  //   },
-  //   create: {
-  //     text1: "Category 2",
-  //     text2:
-  //       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
-  //   },
-  // };
-
-
-
-
-
-
   function swappingProducts(subcategoryClass, image, title, desc) {
     $(".subcategory-link").removeClass("active"); // Remove active class from all subcategory links
     $(subcategoryClass).addClass("active"); // Add active class to the clicked subcategory link
@@ -173,7 +155,7 @@ $(document).ready(function () {
         subcategoryDescriptions[name] = product.description;
         
         subcategories[i] = product.name;
-        console.log(subcategories[i]); 
+        //console.log(subcategories[i]); 
         
       }
     })
@@ -301,8 +283,7 @@ $(document).ready(function () {
   //   "computer",
   // ];
 
-
-  console.log(subcategories);
+ 
 
 
   var timeoutId;
@@ -329,7 +310,7 @@ $(document).ready(function () {
 
   function autoChangeSubcategory() {
     currentIndex = (currentIndex + 1) % subcategories.length;
-    console.log("loool : " + currentIndex);
+    // console.log("loool : " + currentIndex);
     if (currentIndex == 3) {
       changeSubcategory(subcategories[0]);
       currentIndex = 0;
@@ -343,6 +324,30 @@ $(document).ready(function () {
     timeoutId = setTimeout(autoChangeSubcategory, 5000);
   }
     
+
+
+
+
+
+
+ var categoryTexts = {};
+ fetchCategories()
+   .done(function (categories) {
+     for (var i = 0; i < categories.length; i++) {
+       var category = categories[i];
+       categoryTexts[category.name] = {
+         text1: category.title,
+         text2: category.description,
+       };
+     }
+   })
+   .fail(function (error) {
+     console.error("Error fetching products:", error);
+   });
+
+
+
+
 
 
   // Initial subcategory change
@@ -360,9 +365,8 @@ $(document).ready(function () {
   $(".text1parag2:first, .text2parag2:first").addClass("text-animate");
 
   // Define initial content for the divPart1 section
-  var initialText1 = "Free Microsoft 365 apps are easier to use in Edge";
-  var initialText2 =
-    "Your web apps are just a click away. Get more done with built-in Microsft 465 features on Microsoft Edge.";
+  var initialText1 = $categoryTexts[category].text1;
+  var initialText2 = $categoryTexts[category].text2;
 
   // Initialize the content of divPart1 with the initial text
   $(".text1Part1").text(initialText1);
@@ -372,18 +376,10 @@ $(document).ready(function () {
     e.preventDefault();
 
     var category = $(this).data("category");
-    var categoryTexts = {
-      sidebar: {
-        text1: "Free Microsoft 365 apps are easier to use in Edge",
-        text2:
-          "Your web apps are just a click away. Get more done with built-in Microsft 465 features on Microsoft Edge.",
-      },
-      create: {
-        text1: "Category 2",
-        text2:
-          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
-      },
-    };
+    
+   
+
+
 
     var newText1 = categoryTexts[category].text1;
     var newText2 = categoryTexts[category].text2;
@@ -420,44 +416,120 @@ $(document).ready(function () {
     // ... rest of your code ...
   });
 
-  // ============================ CLICKING CATEGORY 1 ==================
-  $(".category-link[data-category='sidebar']").click(function (e) {
-    e.preventDefault();
-    categoryOne(
-      ".category-link[data-category='sidebar']",
-      ".subcategories2",
-      ".subcategories1"
-    );
-    swappingProducts(
-      ".firstSub1",
-      "https://www.tunisianet.com.tn/306796-home/pc-portable-asus-vivobook-16-i5-11300h-12-go-win11-silver.jpg",
-      "See your mail while you browse",
-      "See your mail while you browse desc"
-    );
 
-    var category = "sidebar";
-    currentIndex = 0;
-  });
+
+
+
+
+
+
+
+
+
+
+  fetchCategories()
+    .done(function (categories) {
+      for (var i = 0; i < categories.length; i++) {
+        var category = categories[i];
+        
+
+        console.log("LOOOOOOOOOOL " + ".category-link[data-category='" + category["name"] + "']");
+        $(".category-link[data-category='"+category['name']+"']").click(function (e) {
+          e.preventDefault();
+          categoryOne(
+            ".category-link[data-category='" + category["name"] + "']",
+            ".subcategories2",
+            ".subcategories1"
+          );
+
+          
+
+          var firstProd = {}; 
+
+          fetchProducts()
+          .done(function (products) {
+            for (var i = 0; i < products.length; i++) { 
+              if (products[i]['category_name'] == category['name']) {
+                firstProd = products[i];
+                break; 
+              }
+            }
+          })
+          .fail(function (error) {
+            console.error("Error fetching products:", error);
+          });
+        
+        
+
+          
+
+        swappingProducts(
+          ".firstSub"+(i+1),
+          firstProd['image'],
+          firstProd['name'],
+          firstProd['description']
+        );
+
+          var category = category["name"];
+          currentIndex = 0;
+        });
+        
+
+
+
+
+
+      }
+    })
+    .fail(function (error) {
+      console.error("Error fetching products:", error);
+    });
+
+
+
+
+
+
+
+
+  // ============================ CLICKING CATEGORY 1 ==================
+  // $(".category-link[data-category='sidebar']").click(function (e) {
+  //   e.preventDefault();
+  //   categoryOne(
+  //     ".category-link[data-category='sidebar']",
+  //     ".subcategories2",
+  //     ".subcategories1"
+  //   );
+  //   swappingProducts(
+  //     ".firstSub1",
+  //     "https://www.tunisianet.com.tn/306796-home/pc-portable-asus-vivobook-16-i5-11300h-12-go-win11-silver.jpg",
+  //     "See your mail while you browse",
+  //     "See your mail while you browse desc"
+  //   );
+
+  //   var category = "sidebar";
+  //   currentIndex = 0;
+  // });
 
   //  ======================== CLICKING CATEGORY 2 ==============================
-  $(".category-link[data-category='create']").click(function (e) {
-    e.preventDefault();
+  // $(".category-link[data-category='create']").click(function (e) {
+  //   e.preventDefault();
 
-    categoryOne(
-      ".category-link[data-category='create']",
-      ".subcategories1",
-      ".subcategories2"
-    );
-    swappingProducts(
-      ".firstSub2",
-      "https://mk-media.mytek.tn/media/catalog/product/cache/4635b69058c0dccf0c8109f6ac6742cc/i/p/iphone-se-2022-64-go-midnight-apple.jpg",
-      "Product 1  subcategory 2",
-      "Product 1  subcategory 2 description"
-    );
+  //   categoryOne(
+  //     ".category-link[data-category='create']",
+  //     ".subcategories1",
+  //     ".subcategories2"
+  //   );
+  //   swappingProducts(
+  //     ".firstSub2",
+  //     "https://mk-media.mytek.tn/media/catalog/product/cache/4635b69058c0dccf0c8109f6ac6742cc/i/p/iphone-se-2022-64-go-midnight-apple.jpg",
+  //     "Product 1  subcategory 2",
+  //     "Product 1  subcategory 2 description"
+  //   );
 
-    category = "create";
-    currentIndex = 3;
-  });
+  //   category = "create";
+  //   currentIndex = 3;
+  // });
 });
 
 // =============== loading animations =====================
