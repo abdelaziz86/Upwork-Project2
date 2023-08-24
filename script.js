@@ -469,8 +469,7 @@ $(document).ready(function () {
     
 
     productsCount = $(".category-link.active").data("products");
-    firstSub = $(".category-link.active").data("number");
-    // firstSub = $(".firstSub" + activeCategory + "").data("number");
+    firstSub = $(".category-link.active").data("number"); 
     
     fetchProducts()
       .done(function (products) {
@@ -488,12 +487,12 @@ $(document).ready(function () {
 
 
     console.log("Products count : " + productsCount + ", first sub : " + firstSub + ", current index : " + currentIndex);
-    if (currentIndex <= (productsCount + firstSub)) {
-      console.log("changing subcategory to : " + subcategories[firstSub]);
-      changeSubcategory(subcategories[firstSub]);
-      currentIndex = 0;
+    if (currentIndex < (productsCount + firstSub)) {
+      console.log("changing subcategory to : " + subcategories[currentIndex++]);
+      changeSubcategory(subcategories[currentIndex++]);
+      currentIndex++;
     } else {
-      changeSubcategory(subcategories[currentIndex]);
+      changeSubcategory(subcategories[firstSub]);
     }
     // Set the timeout for the next auto change
     timeoutId = setTimeout(autoChangeSubcategory, 5000);
@@ -552,7 +551,10 @@ $(document).ready(function () {
   $(".category-link").click(function ( e ) {
     e.preventDefault();
     var categoryValue = $(this).data("category");
+    var totalProducts = $(this).data("products");
+
     console.log(".category-link[data-category='" + categoryValue + "']");
+
     categoryOne(
       ".category-link[data-category='" + categoryValue + "']",
       ".subcategories1",
@@ -560,6 +562,7 @@ $(document).ready(function () {
     );
 
     var firstProd = {};
+    
 
     fetchProducts()
       .done(function (products) {
@@ -587,7 +590,6 @@ $(document).ready(function () {
     
 
     category = categoryValue;
-    currentIndex = 0; 
   });
 
   // ================== END CLICKING CATEGORIES =========================
