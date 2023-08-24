@@ -495,7 +495,8 @@ $(document).ready(function () {
       //   changeSubcategory(subcategories[firstSub]);
       // }
 
-      changeSubcategory(subcategories[currentIndex]);  
+    changeSubcategory(subcategories[currentIndex]);
+     
       
       // Set the timeout for the next auto change
       timeoutId = setTimeout(autoChangeSubcategory, 5000);
